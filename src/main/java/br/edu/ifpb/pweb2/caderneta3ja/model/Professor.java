@@ -7,14 +7,20 @@ import javax.persistence.Table;
 @Table(name="tb_Professor")
 public class Professor extends Pessoa{
 	
+	
+	// Atributos
 	private String email;
 	
+	
+	// Construtores
 	public Professor(String nome, String email) {
 		super(nome);
 		this.email= email;
 	}
+	
 	public Professor() {}
 	
+	// Métodos getters e setters
 	public String getEmail() {
 		return email;
 	}

@@ -7,7 +7,7 @@ import javax.persistence.Table;
 @Table(name="tb_Aluno")
 public class Aluno extends Pessoa{
 	
-	
+	// Construtores
 	public Aluno(String nome) {
 		super(nome);
 	}

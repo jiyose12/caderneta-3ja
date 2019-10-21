@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
 public abstract class Pessoa {
+	
+	// Atributos
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
@@ -18,17 +20,18 @@ public abstract class Pessoa {
 		       fetch = FetchType.LAZY, optional = true)
 	private Usuario usuario;
 	
+	// Construtores
 	public  Pessoa() {}
 	
+	public Pessoa(String nome) {
+		this.nome = nome;
+	}
 	
+	// Métodos getters e setters
 	public int getId() {
 		return id;
 	}
 
-
-	public Pessoa(String nome) {
-		this.nome = nome;
-	}
 
 	public String getNome() {
 		return nome;

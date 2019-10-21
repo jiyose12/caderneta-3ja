@@ -7,6 +7,7 @@ import javax.persistence.Table;
 @Table(name="tb_Coordenador")
 public class Coordenador extends Pessoa {
 	
+	// Construtores
 	public Coordenador(String nome) {
 		super(nome);
 	}
