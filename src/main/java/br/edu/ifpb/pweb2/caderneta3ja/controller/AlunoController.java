@@ -8,7 +8,12 @@ import org.springframework.web.servlet.ModelAndView;
 public class AlunoController {
 	
 	@RequestMapping("/aluno")
-	public ModelAndView listarTurmasProfessor() {
+	public ModelAndView listarDisciplinasAluno() {
 		return new ModelAndView("aluno/aluno");
+	}
+	
+	@RequestMapping("/aluno/notas")
+	public ModelAndView listarNotasAluno() {
+		return new ModelAndView("aluno/listar-notas");
 	}
 }

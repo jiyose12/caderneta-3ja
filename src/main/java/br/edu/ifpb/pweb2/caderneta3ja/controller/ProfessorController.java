@@ -23,4 +23,8 @@ public class ProfessorController {
 		return new ModelAndView("professor/professor");
 	}
 
+	@RequestMapping("/professor/turma")
+	public ModelAndView listsProfessor() {
+		return new ModelAndView("professor/turma-professor");
+	}
 }
