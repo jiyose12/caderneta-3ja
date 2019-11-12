@@ -1,4 +1,4 @@
-package br.edu.ifpb.pweb2.pweb2project.model;
+package br.edu.ifpb.pweb2.caderneta3ja.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,19 +10,19 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="Usuario")
+@Table(name="tb_Usuario")
 public class Usuario {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id")
-	private int id;
+	private Integer id;
 	
 	private String login;
 	private String senha;
 	
-	@OneToOne
-    @MapsId
-	private Pessoa pessoa;
+//	@OneToOne
+//    @MapsId
+//	private pessoa;
 
 	public Usuario() {
 		super();
@@ -44,13 +44,6 @@ public class Usuario {
 		this.senha = senha;
 	}
 
-	public Pessoa getPessoa() {
-		return pessoa;
-	}
-
-	public void setPessoa(Pessoa pessoa) {
-		this.pessoa = pessoa;
-	}
 	
 	
 }

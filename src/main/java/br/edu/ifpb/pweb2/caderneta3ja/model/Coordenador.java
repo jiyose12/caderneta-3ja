@@ -1,10 +1,11 @@
-package br.edu.ifpb.pweb2.pweb2project.model;
+package br.edu.ifpb.pweb2.caderneta3ja.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -20,7 +21,7 @@ public class Coordenador{
 	
 	@OneToOne
     @MapsId
-    @Column(name="id_professor")
+    @JoinColumn(name="id_professor")
 	private Professor professor;
 
 	public Coordenador() {
