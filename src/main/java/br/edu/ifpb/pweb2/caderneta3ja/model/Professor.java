@@ -1,26 +1,22 @@
-package br.edu.ifpb.pweb2.caderneta3ja.model;
+package br.edu.ifpb.pweb2.pweb2project.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.CascadeType;
+import javax.persistence.OneToOne;
 
-@Entity
-@Table(name="tb_Professor")
 public class Professor extends Pessoa{
-	
-	
-	// Atributos
 	private String email;
 	
-	
-	// Construtores
-	public Professor(String nome, String email) {
-		super(nome);
-		this.email= email;
-	}
+	@OneToOne(mappedBy = "professor", cascade = CascadeType.ALL)
+	private Coordenador coordenador;
 	
 	public Professor() {}
-	
-	// Métodos getters e setters
+	public Professor(String nome) {
+		super(nome);
+	}
+	public Professor(String nome, String email) {
+		super(nome);
+		this.email = email;
+	}
 	public String getEmail() {
 		return email;
 	}
@@ -29,4 +25,5 @@ public class Professor extends Pessoa{
 	}
 	
 	
+
 }

@@ -1,16 +1,31 @@
-package br.edu.ifpb.pweb2.caderneta3ja.model;
+package br.edu.ifpb.pweb2.pweb2project.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="tb_Aluno")
+@Table(name="Aluno")
 public class Aluno extends Pessoa{
-	
-	// Construtores
-	public Aluno(String nome) {
-		super(nome);
-	}
+	private String matricula;
 	
 	public Aluno() {}
+	
+	public Aluno(String nome) {
+		super(nome);
+	
+	}
+	public Aluno(String nome, String matricula) {
+		super(nome);
+		this.matricula = matricula;
+	}
+
+	public String getMatricula() {
+		return matricula;
+	}
+
+	public void setMatricula(String matricula) {
+		this.matricula = matricula;
+	}
+
+	
 }
