@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -16,6 +18,11 @@ public class Disciplina {
 	
 	private String nome;
 	private String codigo;
+	private String curso;
+	
+	@ManyToOne
+    @JoinColumn(name = "turma_id")
+	private Turma turma;
 	
 	//Construtores
 	public Disciplina() {}
@@ -23,6 +30,8 @@ public class Disciplina {
 	public Disciplina(String nome, String codigo) {
 		this.nome = nome;
 		this.codigo = codigo;
+		
+		
 	}
 	//Métodos
 	public int getId() {
@@ -47,6 +56,14 @@ public class Disciplina {
 
 	public void setCodigo(String codigo) {
 		this.codigo = codigo;
+	}
+
+	public String getCurso() {
+		return curso;
+	}
+
+	public void setCurso(String curso) {
+		this.curso = curso;
 	}
 	
 	

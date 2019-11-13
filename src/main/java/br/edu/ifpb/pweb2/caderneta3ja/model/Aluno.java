@@ -4,8 +4,11 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import org.springframework.data.annotation.Id;
 
 @Entity
 @Table(name="tb_aluno")
@@ -19,6 +22,10 @@ public class Aluno{
 	private String nome;
 	
 	private String matricula;
+	
+	@ManyToOne
+    @JoinColumn(name = "turma_id")
+	private Turma turma;
 	
 	
 	public Aluno() {}

@@ -3,16 +3,19 @@ package br.edu.ifpb.pweb2.caderneta3ja.model;
 
 
 
+import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
-import org.springframework.stereotype.Component;
 
 
 @Entity
@@ -27,6 +30,13 @@ public class Professor{
 	
 	@OneToOne(mappedBy = "professor", cascade = CascadeType.ALL)
 	private Coordenador coordenador;
+	
+	@ManyToMany
+	@JoinTable(
+	  name = "turma", 
+	  joinColumns = @JoinColumn(name = "professor_id"), 
+	  inverseJoinColumns = @JoinColumn(name = "turma_id"))
+	Set<Turma> turmas;
 	
 	public Professor() {}
 	public Professor(String nome) {

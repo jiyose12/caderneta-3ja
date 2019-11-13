@@ -1,9 +1,14 @@
 package br.edu.ifpb.pweb2.caderneta3ja.model;
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -18,6 +23,20 @@ public class Turma {
 	
 	private String codigo;
 	
+	@OneToMany(mappedBy = "turma", cascade = CascadeType.ALL)
+    private Set<Aluno> alunos;
+	
+	@OneToMany(mappedBy = "turma", cascade = CascadeType.ALL)
+    private Set<Disciplina> disciplinas;
+	
+	@OneToMany(mappedBy = "turma", cascade = CascadeType.ALL)
+    private Set<Aula> aulas;
+	
+	@ManyToMany(mappedBy = "turmas")
+	Set<Professor> professores;
+	
+	
+
 	
 	// Construtores
 	public Turma(String codigo) {
