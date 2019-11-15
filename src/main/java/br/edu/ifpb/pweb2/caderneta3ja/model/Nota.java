@@ -1,50 +1,63 @@
-package br.edu.ifpb.pweb2.caderneta3ja.model;
+package br.edu.ifpb.pweb2.pweb2project.model;
 
-import java.util.ArrayList;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
 @Entity
-@Table(name="tb_Nota")
+@Table(name="nota")
 public class Nota {
-	
-	//Atributos
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
-	private ArrayList<Integer> notas;
-	private int numNotas;
+	private int nota;
+	
+	@ManyToOne
+	private Usuario usuario;
+	
+	@ManyToOne
+	private Disciplina disciplina;
 	
 	
-	//Construtores
-	public Nota() {
-		this.notas = new ArrayList<Integer>();
+
+	public Nota() {}
+
+	public int getId() {
+		return id;
+	}
+	
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
-	public Nota(int numNotas) {
-		this.notas = new ArrayList<Integer>();
-		this.numNotas = numNotas;
+	public int getNota() {
+		return nota;
 	}
-	//Métodos
-	public ArrayList<Integer> getNotas() {
-		return notas;
+
+	public void setNota(int nota) {
+		this.nota = nota;
 	}
-	public void setNotas(ArrayList<Integer> notas) {
-		this.notas = notas;
+
+	public Usuario getUsuario() {
+		return usuario;
 	}
-	public int getNumNotas() {
-		return numNotas;
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
-	public void setNumNotas(int numNotas) {
-		this.numNotas = numNotas;
+
+	public Disciplina getDisciplina() {
+		return disciplina;
 	}
-	
-	public void addNota(int nota) {
-		this.notas.add(nota);
+
+	public void setDisciplina(Disciplina disciplina) {
+		this.disciplina = disciplina;
 	}
 	
 	

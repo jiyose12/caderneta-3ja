@@ -1,17 +1,18 @@
-package br.edu.ifpb.pweb2.caderneta3ja.model;
+package br.edu.ifpb.pweb2.pweb2project.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="tb_Disciplina")
+@Table(name="disciplina")
 public class Disciplina {
-	//Atributos
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
@@ -20,20 +21,14 @@ public class Disciplina {
 	private String codigo;
 	private String curso;
 	
-	@ManyToOne
-    @JoinColumn(name = "turma_id")
-	private Turma turma;
+	@OneToMany(mappedBy = "disciplina", cascade = CascadeType.ALL)
+	private List<Nota> notas;
 	
-	//Construtores
+	@OneToMany(mappedBy = "disciplina", cascade = CascadeType.ALL)
+	private List<Aula> aulas;
+	
 	public Disciplina() {}
-	
-	public Disciplina(String nome, String codigo) {
-		this.nome = nome;
-		this.codigo = codigo;
-		
-		
-	}
-	//Métodos
+
 	public int getId() {
 		return id;
 	}
@@ -64,6 +59,22 @@ public class Disciplina {
 
 	public void setCurso(String curso) {
 		this.curso = curso;
+	}
+
+	public List<Nota> getNotas() {
+		return notas;
+	}
+
+	public void setNotas(List<Nota> notas) {
+		this.notas = notas;
+	}
+
+	public List<Aula> getAulas() {
+		return aulas;
+	}
+
+	public void setAulas(List<Aula> aulas) {
+		this.aulas = aulas;
 	}
 	
 	

@@ -1,49 +1,82 @@
-package br.edu.ifpb.pweb2.caderneta3ja.model;
+package br.edu.ifpb.pweb2.pweb2project.model;
 
-import javax.persistence.Column;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.MapsId;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="tb_Usuario")
+@Table(name="usuario")
 public class Usuario {
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id")
-	private Integer id;
+	private int id;
 	
-	private String login;
-	private String senha;
+	private String nome;
+	private String email;
+	private String Matricula;
+	private Perfil perfil;
 	
-//	@OneToOne
-//    @MapsId
-//	private pessoa;
+	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+	private List<Nota> notas;
+	
+	public Usuario() {}
 
-	public Usuario() {
-		super();
+	public String getNome() {
+		return nome;
 	}
 
-	public String getLogin() {
-		return login;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
-	public void setLogin(String login) {
-		this.login = login;
+	public String getEmail() {
+		return email;
 	}
 
-	public String getSenha() {
-		return senha;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
-	public void setSenha(String senha) {
-		this.senha = senha;
+	public String getMatricula() {
+		return Matricula;
 	}
 
+	public void setMatricula(String matricula) {
+		Matricula = matricula;
+	}
+
+	public Perfil getPerfil() {
+		return perfil;
+	}
+
+	public void setPerfil(Perfil perfil) {
+		this.perfil = perfil;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public List<Nota> getNotas() {
+		return notas;
+	}
+
+	public void setNotas(List<Nota> notas) {
+		this.notas = notas;
+	}
+	
+	
 	
 	
 }
