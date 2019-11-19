@@ -1,4 +1,5 @@
-package br.edu.ifpb.pweb2.pweb2project.model;
+package br.edu.ifpb.pweb2.caderneta3ja.model;
+
 
 
 import javax.persistence.Entity;
@@ -7,14 +8,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
 @Entity
 @Table(name="nota")
 public class Nota {
+	
+	//Atributos
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
-	
 	private int nota;
 	
 	@ManyToOne
@@ -24,9 +25,19 @@ public class Nota {
 	private Disciplina disciplina;
 	
 	
+	//Construtores
+	public Nota() {
+		
+	}
+	
 
-	public Nota() {}
 
+	public Nota(int id, int nota) {
+		
+		this.id = id;
+		this.nota = nota;
+	}
+	
 	public int getId() {
 		return id;
 	}
@@ -60,6 +71,7 @@ public class Nota {
 		this.disciplina = disciplina;
 	}
 	
+
 	
 	
 	

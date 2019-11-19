@@ -1,4 +1,4 @@
-package br.edu.ifpb.pweb2.pweb2project.model;
+package br.edu.ifpb.pweb2.caderneta3ja.model;
 
 import java.util.Date;
 
@@ -8,9 +8,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+
 @Entity
 @Table(name="aula")
 public class Aula {
+	// Atributos
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
@@ -18,11 +21,18 @@ public class Aula {
 	private String assunto;
 	private Date date;
 	
+	
 	@ManyToOne
 	private Disciplina disciplina;
 	
+	// Construtores
+	public Aula(String assunto, Date date) {
+		this.assunto = assunto;
+		this.date = date;
+	}
 	public Aula() {}
-
+	
+	// Métodos getters e setters
 	public int getId() {
 		return id;
 	}
@@ -54,6 +64,7 @@ public class Aula {
 	public void setDisciplina(Disciplina disciplina) {
 		this.disciplina = disciplina;
 	}
+	
 	
 	
 }

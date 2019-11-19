@@ -1,18 +1,20 @@
-package br.edu.ifpb.pweb2.pweb2project.model;
+package br.edu.ifpb.pweb2.caderneta3ja.model;
 
-import java.util.List;
+import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="disciplina")
-public class Disciplina {
+public class Disciplina  {
+	//Atributos
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
@@ -21,14 +23,27 @@ public class Disciplina {
 	private String codigo;
 	private String curso;
 	
-	@OneToMany(mappedBy = "disciplina", cascade = CascadeType.ALL)
-	private List<Nota> notas;
 	
-	@OneToMany(mappedBy = "disciplina", cascade = CascadeType.ALL)
-	private List<Aula> aulas;
-	
-	public Disciplina() {}
+	 @ManyToMany
+	    Set<Turma> turma;
+	 
+	 @ManyToMany
+	 @JoinTable(
+	   name = "turma_disciplina", 
+	   joinColumns = @JoinColumn(name = "disciplina_id"),
+	   inverseJoinColumns = @JoinColumn(name = "turma_id"))
+	 Set<Turma> turmadisciplina;
 
+	
+	//Construtores
+	public Disciplina() {}
+	
+	public Disciplina(String nome, String codigo, String curso) {
+		this.nome = nome;
+		this.codigo = codigo;
+		this.curso = curso;
+	}
+	//Métodos
 	public int getId() {
 		return id;
 	}
@@ -61,21 +76,21 @@ public class Disciplina {
 		this.curso = curso;
 	}
 
-	public List<Nota> getNotas() {
-		return notas;
+	public Set<Turma> getTurma() {
+		return turma;
 	}
 
-	public void setNotas(List<Nota> notas) {
-		this.notas = notas;
+	public void setTurma(Set<Turma> turma) {
+		this.turma = turma;
 	}
+	
 
-	public List<Aula> getAulas() {
-		return aulas;
-	}
 
-	public void setAulas(List<Aula> aulas) {
-		this.aulas = aulas;
-	}
+	
+	
+
+	
+	
 	
 	
 	

@@ -1,5 +1,21 @@
-package br.edu.ifpb.pweb2.pweb2project.model;
+package br.edu.ifpb.pweb2.caderneta3ja.model;
+
+
 
 public enum Perfil {
-	Professor, Coordenador, Aluno;
+	
+	ALUNO("Aluno"),
+	COORDENADOR("Coordenador"),
+	PROFESSOR("Professor");
+	
+	private String nome;
+	
+	Perfil(String nome) {
+		this.nome = nome;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
 }

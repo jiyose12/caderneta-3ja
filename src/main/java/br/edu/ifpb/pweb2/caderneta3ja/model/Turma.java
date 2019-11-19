@@ -1,32 +1,40 @@
-package br.edu.ifpb.pweb2.pweb2project.model;
+package br.edu.ifpb.pweb2.caderneta3ja.model;
 
-import java.util.List;
+import java.util.*;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="turma")
 public class Turma {
+	
+	
+	// Atributos
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
 	private String codigo;
 	
-	@OneToMany(mappedBy = "turma", cascade = CascadeType.ALL)
-	private List<Disciplina> disciplinas;
+	 @ManyToMany
+	    Set<Disciplina> disciplina;
 	
-	@OneToMany(mappedBy = "turma", cascade = CascadeType.ALL)
-	private List<Usuario> usuarios;
 	
+	// Construtores
+	public Turma(String codigo) {
+		this.codigo = codigo;
+	}
 	public Turma() {}
 
+	
+	// Métodos getters e setters
 	public int getId() {
 		return id;
 	}
@@ -42,23 +50,15 @@ public class Turma {
 	public void setCodigo(String codigo) {
 		this.codigo = codigo;
 	}
-
-	public List<Disciplina> getDisciplinas() {
-		return disciplinas;
+	public Set<Disciplina> getDisciplina() {
+		return disciplina;
 	}
-
-	public void setDisciplinas(List<Disciplina> disciplinas) {
-		this.disciplinas = disciplinas;
-	}
-
-	public List<Usuario> getUsuarios() {
-		return usuarios;
-	}
-
-	public void setUsuarios(List<Usuario> usuarios) {
-		this.usuarios = usuarios;
+	public void setDisciplina(Set<Disciplina> disciplina) {
+		this.disciplina = disciplina;
 	}
 	
+
+
 	
 	
 	
