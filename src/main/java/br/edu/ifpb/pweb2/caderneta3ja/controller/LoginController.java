@@ -15,24 +15,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-
-
 import br.edu.ifpb.pweb2.caderneta3ja.model.Perfil;
 import br.edu.ifpb.pweb2.caderneta3ja.model.Usuario;
-import br.edu.ifpb.pweb2.caderneta3ja.repository.ProfessorRepository;
 import br.edu.ifpb.pweb2.caderneta3ja.repository.UsuarioRepository;
 
 @Controller
-@RequestMapping(value = "login")
 public class LoginController {
 
 	@Autowired
 	private UsuarioRepository usuarioDAO;
 	
-	@Autowired 
-	private ProfessorRepository professor;
-	
-	@RequestMapping(method=RequestMethod.GET)
+	@RequestMapping(value = "login", method=RequestMethod.GET)
 	public String loginForm(Model model, @CookieValue(value = "clogin", defaultValue = "") String clogin) {
 		Usuario u = new Usuario();
 		u.setEmail(clogin);
@@ -40,11 +33,14 @@ public class LoginController {
 		
 		return "login";
 	}
+    @RequestMapping(value="logout", method = RequestMethod.POST)
+    public String logout(HttpServletRequest request){
+        HttpSession httpSession = request.getSession();
+        httpSession.invalidate();
+        return "redirect:login";
+    }
 	
-	
-	
-	
-	@RequestMapping(method=RequestMethod.POST)
+	@RequestMapping(value = "login", method=RequestMethod.POST)
 	public String validacaoProfessor(Usuario usuario, HttpSession session) {
 		Usuario usuariobanco = (Usuario) usuarioDAO.findByEmail(usuario.getEmail());
 		String proxPagina = null;

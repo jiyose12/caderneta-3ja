@@ -16,7 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 
 import br.edu.ifpb.pweb2.caderneta3ja.model.Usuario;
-import br.edu.ifpb.pweb2.caderneta3ja.repository.ProfessorRepository;
+import br.edu.ifpb.pweb2.caderneta3ja.repository.UsuarioRepository;
 
 @Controller
 @RequestMapping(value = "/professor")
@@ -25,7 +25,7 @@ public class ProfessorController {
 	JdbcTemplate jdbcTempllet;
 	
 	@Autowired
-	ProfessorRepository professorRepository;
+	UsuarioRepository usuarioRepository;
 
 	@RequestMapping(value = "")
 	public ModelAndView listarTurmasProfessor() {
@@ -44,22 +44,20 @@ public class ProfessorController {
 	
 	 @GetMapping("/list")
 	 public String ListaProfessor(Model model) {
-		 model.addAttribute("tb_professor", professorRepository.findBytipo("professor"));
+		 model.addAttribute("tb_professor", usuarioRepository.findByPerfil("PROFESSOR"));
 		 return "professor/listProfessor";
 	 }
 	 
 	 @GetMapping("delet/{id}")
 	    public String deleteStudent(@PathVariable("id") Integer id, Model model) {
-	        Usuario usuario = professorRepository.findById(id)
+	        Usuario usuario = usuarioRepository.findById(id)
 	            .orElseThrow(() -> new IllegalArgumentException("Invalid  Id:" + id));
-	        professorRepository.delete(usuario);
-	        model.addAttribute("tb_professor", professorRepository.findAll());
-	        return "redirect:/professor/list";
-	        
+	        usuarioRepository.delete(usuario);
+	        model.addAttribute("tb_professor", usuarioRepository.findAll());
+	        return "redirect:/professor/list";        
 
 	    }
 
-	 
 	 @GetMapping("signup")
 	    public String showSignUpForm(Usuario usuario) {
 	        return "professor/cadastraProfessor";
@@ -72,7 +70,7 @@ public class ProfessorController {
 	            return "professor/cadastraProfessor";
 	        }
 	       
-	        professorRepository.save(usuario);
+	        usuarioRepository.save(usuario);
 	        
 	       
 	        return "redirect:list";
@@ -83,7 +81,7 @@ public class ProfessorController {
 	 
 	 @GetMapping("edit/{id}")
 	    public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
-	        Usuario usuario = professorRepository.findById(id)
+	        Usuario usuario = usuarioRepository.findById(id)
 	        		.orElseThrow(() -> new IllegalArgumentException("Invalid student Id:" + id));
 	        model.addAttribute("usuario", usuario);
 	        return "professor/editarProfessor";
@@ -96,8 +94,8 @@ public class ProfessorController {
 	            usuario.setId(id);
 	            return "professor/editarProfessor";
 	        }else {
-	        	professorRepository.save(usuario);
-		        model.addAttribute("students", professorRepository.findAll());
+	        	usuarioRepository.save(usuario);
+		        model.addAttribute("students", usuarioRepository.findAll());
 		        return "redirect:/professor/list";
 				
 			}

@@ -10,13 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 @RequestMapping(value="layout")
 public class LayoutController {
-	
 
-    @RequestMapping(value="logout",method = RequestMethod.POST)
-    public String logout(HttpServletRequest request){
-        HttpSession httpSession = request.getSession();
-        httpSession.invalidate();
-        return "redirect:login";
-    }
+
 
 }

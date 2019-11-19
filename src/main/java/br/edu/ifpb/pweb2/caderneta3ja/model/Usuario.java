@@ -27,7 +27,7 @@ public class Usuario {
 	
 	private String nome;
 	private String email;
-	private String Matricula;
+	private String matricula;
 	private String tipo;
 	private String senha;
 	@Column(name="TP_PERFIL")
@@ -51,7 +51,7 @@ public class Usuario {
 		this.id = id;
 		this.nome = nome;
 		this.email = email;
-		Matricula = matricula;
+		matricula = matricula;
 		this.perfil = perfil;
 		this.tipo=tipo;
 		this.senha = senha;
@@ -78,11 +78,11 @@ public class Usuario {
 	}
 
 	public String getMatricula() {
-		return Matricula;
+		return matricula;
 	}
 
 	public void setMatricula(String matricula) {
-		Matricula = matricula;
+		matricula = matricula;
 	}
 
 	public Perfil getPerfil() {
