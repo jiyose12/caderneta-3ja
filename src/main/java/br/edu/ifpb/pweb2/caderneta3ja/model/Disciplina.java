@@ -24,8 +24,6 @@ public class Disciplina  {
 	private String curso;
 	
 	
-	 @ManyToMany
-	    Set<Turma> turma;
 	 
 	 @ManyToMany
 	 @JoinTable(
@@ -76,13 +74,15 @@ public class Disciplina  {
 		this.curso = curso;
 	}
 
-	public Set<Turma> getTurma() {
-		return turma;
+	public Set<Turma> getTurmadisciplina() {
+		return turmadisciplina;
 	}
 
-	public void setTurma(Set<Turma> turma) {
-		this.turma = turma;
+	public void setTurmadisciplina(Set<Turma> turmadisciplina) {
+		this.turmadisciplina = turmadisciplina;
 	}
+
+
 	
 
 

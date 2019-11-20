@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 
 import br.edu.ifpb.pweb2.caderneta3ja.model.Usuario;
+
 import br.edu.ifpb.pweb2.caderneta3ja.repository.UsuarioRepository;
 
 @Controller
@@ -25,6 +26,7 @@ public class ProfessorController {
 	JdbcTemplate jdbcTempllet;
 	
 	@Autowired
+	
 	UsuarioRepository usuarioRepository;
 
 	@RequestMapping(value = "")
@@ -44,7 +46,7 @@ public class ProfessorController {
 	
 	 @GetMapping("/list")
 	 public String ListaProfessor(Model model) {
-		 model.addAttribute("tb_professor", usuarioRepository.findByPerfil("PROFESSOR"));
+//		 model.addAttribute("tb_professor", usuarioRepository.findBytipo("professor"));
 		 return "professor/listProfessor";
 	 }
 	 
@@ -54,10 +56,12 @@ public class ProfessorController {
 	            .orElseThrow(() -> new IllegalArgumentException("Invalid  Id:" + id));
 	        usuarioRepository.delete(usuario);
 	        model.addAttribute("tb_professor", usuarioRepository.findAll());
-	        return "redirect:/professor/list";        
+	        return "redirect:/professor/list";
+	        
 
 	    }
 
+	 
 	 @GetMapping("signup")
 	    public String showSignUpForm(Usuario usuario) {
 	        return "professor/cadastraProfessor";
@@ -99,6 +103,8 @@ public class ProfessorController {
 		        return "redirect:/professor/list";
 				
 			}
+
+	        
 	    }
 	
 	

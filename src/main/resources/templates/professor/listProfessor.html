@@ -15,15 +15,7 @@
     <h1>Lista Professor</h1>
     <a href="/coordenador" class="btn btn-primary">Volta</a> 
     <div align="right">
-        <form th:action="@{/employee/list}" method="get">
-            <div class="input-group input-group-sm" style="width: 450px;">
-                <input type="text" name="value" class="form-control pull-right" placeholder="Pesquisar" th:if="${key} == null"/>
-                <input type="text" name="value" class="form-control pull-right" placeholder="Pencarian Berdasarnkan Nama" th:if="${key} != null" th:value="${key}" />
-                <div class="input-group-btn">
-                    <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i>Go...</button>
-                </div>
-            </div>
-        </form>
+        
     </div>
 <!-- datatable bootstrap4 -->
    
@@ -49,6 +41,7 @@
                                     </tr>
                                 </tbody>
                             </table>
+                            
 <!-- fim datable -->
 </div>
 

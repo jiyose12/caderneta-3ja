@@ -3,15 +3,15 @@
       layout:decorate="~{layout.html}">
 
 <head>
-    <title>Cadastrar Professor</title>
+    <title>Cadastrar Aluno</title>
 </head>
 
 <body>
 <section layout:fragment="content">
 <a href="/coordenador" class="btn btn-primary">Volta</a> 
-    <h1>Cadastrar Professor</h1>
+    <h1>Cadastrar Aluno</h1>
 
-		<form action="#" th:action="@{/professor/add}" th:object="${usuario}"
+		<form action="#" th:action="@{/aluno/add}" th:object="${usuario}"
 			method="post">
 			<div class="row">
 
@@ -41,30 +41,13 @@
 						class="text-danger"></span>
 				</div>
 				
-				<div class="form-group col-md-8">
-					<label for="senha" class="col-form-label">senha</label> <input
-						type="text" th:field="*{senha}" class="form-control" id="senha"
-						placeholder="senha"> <span
-						th:if="${#fields.hasErrors('senha')}" th:errors="*{senha}"
-						class="text-danger"></span>
-				</div>
-				
-				
-				<div class="form-group col-md-8">
-					<label for="tp_perfil" class="col-form-label">Perfil</label> <input
-						type="text" th:field="*{perfil}" class="form-control" id="tp_perfil"
-						placeholder="senha"> 
-				</div>
-				
-				
-				
 				
 				
 
 
 
 				<div class="col-md-6">
-					<input type="submit" class="btn btn-primary" value="Add Professor">
+					<input type="submit" class="btn btn-primary" value="Add Aluno">
 				</div>
 
 				<div class="form-group col-md-8"></div>
