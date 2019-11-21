@@ -16,24 +16,31 @@ import org.springframework.web.servlet.ModelAndView;
 
 
 import br.edu.ifpb.pweb2.caderneta3ja.model.Usuario;
-
+import br.edu.ifpb.pweb2.caderneta3ja.repository.TurmaRepository;
 import br.edu.ifpb.pweb2.caderneta3ja.repository.UsuarioRepository;
 
 @Controller
 @RequestMapping(value = "/professor")
 public class ProfessorController {
-	@Autowired
-	JdbcTemplate jdbcTempllet;
 	
 	@Autowired
 	
 	UsuarioRepository usuarioRepository;
+	TurmaRepository turmaRepository;
 
 	@RequestMapping(value = "")
-	public ModelAndView listarTurmasProfessor() {
+	public ModelAndView listarTurmasProfessor(Model model) {
+		 model.addAttribute("turma", turmaRepository.findAll());
 		return new ModelAndView("professor/professor");
 	}
 	
+	 @GetMapping("detalhes-turma/{id}")
+	    public String detalhesTurma(@PathVariable("id") Integer id, Model model) {
+	        Usuario usuario = usuarioRepository.findById(id)
+	        		.orElseThrow(() -> new IllegalArgumentException("Invalid student Id:" + id));
+	        model.addAttribute("usuario", usuario);
+	        return "professor/editarProfessor";
+	    }
 	
 	 
 	

@@ -1,7 +1,9 @@
 package br.edu.ifpb.pweb2.caderneta3ja.model;
 
+import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -21,9 +25,7 @@ public class Disciplina  {
 	
 	private String nome;
 	private String codigo;
-	private String curso;
-	
-	
+	private String curso;	
 	 
 	 @ManyToMany
 	 @JoinTable(
@@ -32,6 +34,11 @@ public class Disciplina  {
 	   inverseJoinColumns = @JoinColumn(name = "turma_id"))
 	 Set<Turma> turmadisciplina;
 
+	@OneToMany(mappedBy = "disciplina", cascade = CascadeType.ALL)
+	 private List<Aula> aula;
+ 
+	@ManyToOne
+	private Usuario usuario;
 	
 	//Construtores
 	public Disciplina() {}
@@ -82,9 +89,13 @@ public class Disciplina  {
 		this.turmadisciplina = turmadisciplina;
 	}
 
-
+	public void addTurmadisciplina(Turma turmadisciplina) {
+		this.turmadisciplina.add(turmadisciplina);
+	}
 	
-
+	public void addAula(Aula a) {
+		this.aula.add(a);
+	}
 
 	
 	

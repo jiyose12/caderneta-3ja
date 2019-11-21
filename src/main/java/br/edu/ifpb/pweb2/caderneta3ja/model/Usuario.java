@@ -21,7 +21,6 @@ import javax.persistence.Table;
 @Table(name="usuario")
 public class Usuario {
 
-
 	// Atributos
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -35,12 +34,11 @@ public class Usuario {
 	@Enumerated(EnumType.STRING)
 	private Perfil perfil;
 
-
-
-
-
 	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
 	private List<Nota> notas;
+	
+	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+	private List<Disciplina> disciplinas;
 
 	@ManyToMany
 	@JoinTable(
@@ -123,6 +121,14 @@ public class Usuario {
 
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+	
+	public void setTurmaUsuario(Turma t) {
+		this.turmausuario.add(t);
+	}
+	
+	public void setDisciplinaUsuario(Disciplina d) {
+		this.disciplinas.add(d);
 	}
 
 

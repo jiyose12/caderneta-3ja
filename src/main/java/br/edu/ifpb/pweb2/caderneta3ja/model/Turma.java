@@ -16,8 +16,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name="turma")
 public class Turma {
-	
-	
+		
 	// Atributos
 		@Id
 		@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -64,9 +63,12 @@ public class Turma {
 			this.disciplina = disciplina;
 		}
 		
-
-
+		public void addDisciplina(Disciplina disciplina) {
+			this.disciplina.add(disciplina);
+		}
 		
-		
+		public void addUsuario(Usuario u) {
+			this.usuario.add(u);
+		}
 		
 	}
