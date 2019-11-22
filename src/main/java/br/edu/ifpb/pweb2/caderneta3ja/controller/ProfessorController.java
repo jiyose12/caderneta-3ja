@@ -53,8 +53,8 @@ public class ProfessorController {
 	
 	 @GetMapping("/list")
 	 public String ListaProfessor(Model model) {
-//		 model.addAttribute("tb_professor", usuarioRepository.findBytipo("professor"));
-		 return "professor/listProfessor";
+	 model.addAttribute("tb_professor", usuarioRepository.findByPerfilProfessor("PROFESSOR"));
+		 return "professor/list-professor";
 	 }
 	 
 	 @GetMapping("delet/{id}")
@@ -71,14 +71,14 @@ public class ProfessorController {
 	 
 	 @GetMapping("signup")
 	    public String showSignUpForm(Usuario usuario) {
-	        return "professor/cadastraProfessor";
+	        return "professor/cadastra-professor";
 	    }
 	 
 	 
 	 @PostMapping("add")
 	    public String addStudent(@Valid Usuario usuario, BindingResult result, Model model) {
 	        if (result.hasErrors()) {
-	            return "professor/cadastraProfessor";
+	            return "professor/cadastra-professor";
 	        }
 	       
 	        usuarioRepository.save(usuario);
@@ -95,7 +95,7 @@ public class ProfessorController {
 	        Usuario usuario = usuarioRepository.findById(id)
 	        		.orElseThrow(() -> new IllegalArgumentException("Invalid student Id:" + id));
 	        model.addAttribute("usuario", usuario);
-	        return "professor/editarProfessor";
+	        return "professor/editar-professor";
 	    }
 	 
 	 @PostMapping("update/{id}")
@@ -103,7 +103,7 @@ public class ProfessorController {
 	        Model model) {
 	        if (result.hasErrors()) {
 	            usuario.setId(id);
-	            return "professor/editarProfessor";
+	            return "professor/editar-professor";
 	        }else {
 	        	usuarioRepository.save(usuario);
 		        model.addAttribute("students", usuarioRepository.findAll());

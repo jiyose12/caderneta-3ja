@@ -23,6 +23,8 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Integer>{
 	@org.springframework.data.jpa.repository.Query("select c from Usuario c where c.perfil='PROFESSOR'")
 	List<Usuario> findByPerfilProfessor(String perfil);
 	
+	@org.springframework.data.jpa.repository.Query("select c from Usuario c where c.perfil='ALUNO'")
+	List<Usuario> findByPerfilAluno(String perfil);
 
 
 }
