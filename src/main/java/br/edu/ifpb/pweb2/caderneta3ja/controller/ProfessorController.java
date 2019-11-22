@@ -41,16 +41,7 @@ public class ProfessorController {
 	        model.addAttribute("usuario", usuario);
 	        return "professor/editarProfessor";
 	    }
-	
-	 
-	
-	/*
-	 * @GetMapping("/list") public String ListaProfessor(Model model) {
-	 * model.addAttribute("tb_professor", professorRepository.findAll(new
-	 * Sort(Sort.Direction.ASC, "nome"))); return"professor/listProfessor"; }
-	 */
-	
-	
+			
 	 @GetMapping("/list")
 	 public String ListaProfessor(Model model) {
 //		 model.addAttribute("tb_professor", usuarioRepository.findBytipo("professor"));

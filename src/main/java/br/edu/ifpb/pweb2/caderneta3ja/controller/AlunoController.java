@@ -37,7 +37,7 @@ public class AlunoController {
 	
 	 @GetMapping("/list")
 	 public String ListaAluno(Model model) {
-//		 model.addAttribute("usuario", usuarioRepository.findBytipo("aluno"));
+	 model.addAttribute("usuario", usuarioRepository.findByPerfilAluno("ALUNO"));
 		 return "aluno/listAluno";
 	 }
 	 
@@ -94,7 +94,5 @@ public class AlunoController {
 
 	        
 	    }
-	 
-	
 	
 }
