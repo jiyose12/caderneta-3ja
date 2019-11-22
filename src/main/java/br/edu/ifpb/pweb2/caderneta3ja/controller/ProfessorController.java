@@ -30,7 +30,7 @@ public class ProfessorController {
 
 	@RequestMapping(value = "")
 	public ModelAndView listarTurmasProfessor(Model model) {
-		 model.addAttribute("turma", turmaRepository.findAll());
+//		 model.addAttribute("turma", turmaRepository.findAll());
 		return new ModelAndView("professor/professor");
 	}
 	
