@@ -1,5 +1,7 @@
 package br.edu.ifpb.pweb2.caderneta3ja.controller;
 
+import java.util.Set;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +15,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-
-
+import br.edu.ifpb.pweb2.caderneta3ja.model.Disciplina;
+import br.edu.ifpb.pweb2.caderneta3ja.model.Turma;
 import br.edu.ifpb.pweb2.caderneta3ja.model.Usuario;
 import br.edu.ifpb.pweb2.caderneta3ja.repository.TurmaRepository;
 import br.edu.ifpb.pweb2.caderneta3ja.repository.UsuarioRepository;
@@ -24,15 +26,17 @@ import br.edu.ifpb.pweb2.caderneta3ja.repository.UsuarioRepository;
 public class ProfessorController {
 	
 	@Autowired
-	
 	UsuarioRepository usuarioRepository;
+	@Autowired
 	TurmaRepository turmaRepository;
 
 	@RequestMapping(value = "")
 	public ModelAndView listarTurmasProfessor(Model model) {
-		 model.addAttribute("turma", turmaRepository.findAll());
+		 model.addAttribute("turma", turmaRepository.findAllTurmaDisciplina());
 		return new ModelAndView("professor/professor");
 	}
+	
+
 	
 	 @GetMapping("detalhes-turma/{id}")
 	    public String detalhesTurma(@PathVariable("id") Integer id, Model model) {
@@ -110,13 +114,5 @@ public class ProfessorController {
 		        return "redirect:/professor/list";
 				
 			}
-
-	        
 	    }
-	
-	
-	 
-	 
-	
-	
 }
