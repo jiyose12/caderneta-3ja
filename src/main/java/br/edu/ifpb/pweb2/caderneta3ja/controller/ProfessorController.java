@@ -1,5 +1,7 @@
 package br.edu.ifpb.pweb2.caderneta3ja.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-
-
+import br.edu.ifpb.pweb2.caderneta3ja.model.Turma;
 import br.edu.ifpb.pweb2.caderneta3ja.model.Usuario;
 import br.edu.ifpb.pweb2.caderneta3ja.repository.TurmaRepository;
 import br.edu.ifpb.pweb2.caderneta3ja.repository.UsuarioRepository;
@@ -30,7 +31,8 @@ public class ProfessorController {
 
 	@RequestMapping(value = "")
 	public ModelAndView listarTurmasProfessor(Model model) {
-//		 model.addAttribute("turma", turmaRepository.findAll());
+		
+		 model.addAttribute("turma", turmaRepository.findAllTurmaDisciplina());
 		return new ModelAndView("professor/professor");
 	}
 	

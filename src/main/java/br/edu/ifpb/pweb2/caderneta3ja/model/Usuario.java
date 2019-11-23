@@ -1,7 +1,6 @@
 package br.edu.ifpb.pweb2.caderneta3ja.model;
 
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -11,9 +10,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -39,13 +36,19 @@ public class Usuario {
 	
 	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
 	private List<Disciplina> disciplinas;
+	
+	@ManyToOne
+	private Turma turma;
+	
+	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+	 private List<Turma> usuarioTurmas;
 
-	@ManyToMany
-	@JoinTable(
-			name = "turma_usuario", 
-			joinColumns = @JoinColumn(name = "usuario_id"),
-			inverseJoinColumns = @JoinColumn(name = "turma_id"))
-	Set<Turma> turmausuario;
+//	@ManyToMany
+//	@JoinTable(
+//			name = "turma_usuario", 
+//			joinColumns = @JoinColumn(name = "usuario_id"),
+//			inverseJoinColumns = @JoinColumn(name = "turma_id"))
+//	Set<Turma> turmausuario;
 	// Construtores
 
 	public Usuario() {}
@@ -60,8 +63,6 @@ public class Usuario {
 		this.perfil = perfil;
 		this.senha = senha;
 	}
-
-
 
 	// Métodos getters e setters
 
@@ -123,14 +124,31 @@ public class Usuario {
 		this.senha = senha;
 	}
 	
-	public void setTurmaUsuario(Turma t) {
-		this.turmausuario.add(t);
+//	public void setTurmaUsuario(Turma t) {
+//		this.turmausuario.add(t);
+//	}
+	
+	public List<Disciplina> getDisciplinas() {
+
+		return disciplinas;
 	}
 	
 	public void setDisciplinaUsuario(Disciplina d) {
 		this.disciplinas.add(d);
 	}
+	
+	public List<Turma> getUsuarioTurmas() {
 
+		return usuarioTurmas;
+	}
+	
+	public void setUsuarioTurmas(Turma t) {
+		this.usuarioTurmas.add(t);
+	}
+	
+	public void setNotas(Nota n) {
+		this.notas.add(n);
+	}
 
 
 

@@ -27,18 +27,21 @@ public class Disciplina  {
 	private String codigo;
 	private String curso;	
 	 
-	 @ManyToMany
-	 @JoinTable(
-	   name = "turma_disciplina", 
-	   joinColumns = @JoinColumn(name = "disciplina_id"),
-	   inverseJoinColumns = @JoinColumn(name = "turma_id"))
-	 Set<Turma> turmadisciplina;
+//	 @ManyToMany
+//	 @JoinTable(
+//	   name = "turma_disciplina", 
+//	   joinColumns = @JoinColumn(name = "disciplina_id"),
+//	   inverseJoinColumns = @JoinColumn(name = "turma_id"))
+//	 Set<Turma> turmadisciplina;
 
 	@OneToMany(mappedBy = "disciplina", cascade = CascadeType.ALL)
-	 private List<Aula> aula;
+	 private List<Aula> aulas;
  
 	@ManyToOne
 	private Usuario usuario;
+	
+	@ManyToOne
+	private Turma turma;
 	
 	//Construtores
 	public Disciplina() {}
@@ -81,20 +84,32 @@ public class Disciplina  {
 		this.curso = curso;
 	}
 
-	public Set<Turma> getTurmadisciplina() {
-		return turmadisciplina;
-	}
+//	public Set<Turma> getTurmadisciplina() {
+//		return turmadisciplina;
+//	}
+//
+//	public void setTurmadisciplina(Set<Turma> turmadisciplina) {
+//		this.turmadisciplina = turmadisciplina;
+//	}
+//
+//	public void addTurmadisciplina(Turma turmadisciplina) {
+//		this.turmadisciplina.add(turmadisciplina);
+//	}
 
-	public void setTurmadisciplina(Set<Turma> turmadisciplina) {
-		this.turmadisciplina = turmadisciplina;
-	}
-
-	public void addTurmadisciplina(Turma turmadisciplina) {
-		this.turmadisciplina.add(turmadisciplina);
+	public List<Aula> getAula() {
+		return aulas;
 	}
 	
 	public void addAula(Aula a) {
-		this.aula.add(a);
+		this.aulas.add(a);
+	}
+
+	public Turma getTurma() {
+		return turma;
+	}
+
+	public void setTurma(Turma turma) {
+		this.turma = turma;
 	}
 
 	
