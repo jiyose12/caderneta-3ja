@@ -4,9 +4,13 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import br.edu.ifpb.pweb2.caderneta3ja.model.Usuario;
 
+@Repository
+@Transactional(readOnly = true)
 public interface UsuarioRepository extends JpaRepository<Usuario, Integer>{
 	// Implementação feita pelo próprio Spring Boot
 	

@@ -23,7 +23,7 @@ import br.edu.ifpb.pweb2.caderneta3ja.model.Usuario;
 import br.edu.ifpb.pweb2.caderneta3ja.repository.UsuarioRepository;
 
 @Controller
-@RequestMapping(value = "login")
+//@RequestMapping(value = "login")
 public class LoginController {
 
 	@Autowired
@@ -31,7 +31,7 @@ public class LoginController {
 	
 	
 	
-	@RequestMapping(method=RequestMethod.GET)
+	@RequestMapping(value = "login", method=RequestMethod.GET)
 	public String loginForm(Model model, @CookieValue(value = "clogin", defaultValue = "") String clogin) {
 		Usuario u = new Usuario();
 		u.setEmail(clogin);
@@ -40,10 +40,8 @@ public class LoginController {
 		return "login";
 	}
 	
-	
-	
-	
-	@RequestMapping(method=RequestMethod.POST)
+
+	@RequestMapping(value = "login", method=RequestMethod.POST)
 	public String validacaoProfessor(Usuario usuario, HttpSession session) {
 		Usuario usuariobanco = (Usuario) usuarioDAO.findByEmail(usuario.getEmail());
 		String proxPagina = null;
@@ -56,12 +54,15 @@ public class LoginController {
 		
 		if(usuario.getEmail().equals(usuariobanco.getEmail()) && usuario.getSenha().equals(usuariobanco.getSenha()) && usuariobanco.getPerfil() == Perfil.PROFESSOR) {
 			session.setAttribute("usuario", usuariobanco);
+//			usuario.setUsuarioLogado(true);
 			proxPagina = "redirect:professor";	
 		}else if(usuario.getEmail().equals(usuariobanco.getEmail()) && usuario.getSenha().equals(usuariobanco.getSenha()) && usuariobanco.getPerfil() == Perfil.ALUNO ){
 			session.setAttribute("usuario", usuariobanco);
+//			usuario.setUsuarioLogado(true);
 			proxPagina = "redirect:aluno";	
 		}else if(usuario.getEmail().equals(usuariobanco.getEmail()) && usuario.getSenha().equals(usuariobanco.getSenha()) && usuariobanco.getPerfil() == Perfil.COORDENADOR){
 			session.setAttribute("usuario", usuariobanco);
+//			usuario.setUsuarioLogado(true);
 			proxPagina = "redirect:coordenador";	
 		} else {
 			proxPagina = "redirect:login";
@@ -91,5 +92,11 @@ public class LoginController {
 		
 	}
 	
+    @RequestMapping(value="logout", method = RequestMethod.POST)
+    public String logout(HttpServletRequest request){
+        HttpSession httpSession = request.getSession();
+        httpSession.invalidate();
+        return "redirect:login";
+    }
 
 }

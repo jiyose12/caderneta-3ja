@@ -29,10 +29,13 @@ public class AlunoController {
 	
 	@Autowired
 	UsuarioRepository usuarioRepository;
+	Usuario usuario;
 	
 	@RequestMapping(value = "")
 	public ModelAndView listarDisciplinasAluno() {
+
 		return new ModelAndView("aluno/aluno");
+		
 	}
 	
 	 @GetMapping("/list")
