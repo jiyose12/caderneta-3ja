@@ -10,7 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -25,20 +24,14 @@ public class Turma {
 		
 		private String codigo;
 		
-//		 @ManyToMany
-//		 Set<Disciplina> disciplina;
+		 @ManyToMany
+		 Set<Disciplina> disciplina;
 		 
-//		 @ManyToMany
-//		 Set<Usuario> usuario;
-		
-		@OneToMany(mappedBy = "turma", cascade = CascadeType.ALL)
-		 private List<Usuario> turmaUsuarios;
-		
-		@OneToMany(mappedBy = "turma", cascade = CascadeType.ALL)
-		 private List<Disciplina> disciplinas;
+		 @ManyToMany
+		 Set<Usuario> usuario;
 		 
-		@ManyToOne
-		private Usuario usuario;
+		 
+		
 		
 		// Construtores
 		public Turma(String codigo) {
@@ -63,19 +56,19 @@ public class Turma {
 		public void setCodigo(String codigo) {
 			this.codigo = codigo;
 		}
-		public List<Disciplina> getDisciplina() {
-			return disciplinas;
+		public Set<Disciplina> getDisciplina() {
+			return disciplina;
 		}
-		public void setDisciplina(List<Disciplina> disciplina) {
-			this.disciplinas = disciplina;
+		public void setDisciplina(Set<Disciplina> disciplina) {
+			this.disciplina = disciplina;
 		}
 		
 		public void addDisciplina(Disciplina disciplina) {
-			this.disciplinas.add(disciplina);
+			this.disciplina.add(disciplina);
 		}
 		
-		public void addTurmaUsuarios(Usuario u) {
-			this.turmaUsuarios.add(u);
+		public void addUsuario(Usuario u) {
+			this.usuario.add(u);
 		}
 		
 	}

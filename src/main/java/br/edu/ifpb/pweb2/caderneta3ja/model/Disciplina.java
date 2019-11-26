@@ -35,13 +35,10 @@ public class Disciplina  {
 	 Set<Turma> turmadisciplina;
 	 
 	@OneToMany(mappedBy = "disciplina", cascade = CascadeType.ALL)
-	 private List<Aula> aulas;
+	 private List<Aula> aula;
  
 	@ManyToOne
 	private Usuario usuario;
-	
-	@ManyToOne
-	private Turma turma;
 	
 	//Construtores
 	public Disciplina() {}
@@ -84,32 +81,20 @@ public class Disciplina  {
 		this.curso = curso;
 	}
 
-//	public Set<Turma> getTurmadisciplina() {
-//		return turmadisciplina;
-//	}
-//
-//	public void setTurmadisciplina(Set<Turma> turmadisciplina) {
-//		this.turmadisciplina = turmadisciplina;
-//	}
-//
-//	public void addTurmadisciplina(Turma turmadisciplina) {
-//		this.turmadisciplina.add(turmadisciplina);
-//	}
+	public Set<Turma> getTurmadisciplina() {
+		return turmadisciplina;
+	}
 
-	public List<Aula> getAula() {
-		return aulas;
+	public void setTurmadisciplina(Set<Turma> turmadisciplina) {
+		this.turmadisciplina = turmadisciplina;
+	}
+
+	public void addTurmadisciplina(Turma turmadisciplina) {
+		this.turmadisciplina.add(turmadisciplina);
 	}
 	
 	public void addAula(Aula a) {
-		this.aulas.add(a);
-	}
-
-	public Turma getTurma() {
-		return turma;
-	}
-
-	public void setTurma(Turma turma) {
-		this.turma = turma;
+		this.aula.add(a);
 	}
 
 	
