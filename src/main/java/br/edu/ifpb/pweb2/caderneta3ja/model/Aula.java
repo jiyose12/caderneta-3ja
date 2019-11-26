@@ -22,7 +22,6 @@ public class Aula {
 	private String assunto;
 	private Date date;
 	
-	
 	@ManyToOne
 	private Disciplina disciplina;
 	

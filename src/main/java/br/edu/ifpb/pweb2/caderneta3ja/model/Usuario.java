@@ -44,7 +44,8 @@ public class Usuario {
 //	public void setUsuarioLogado(boolean usuarioLogado) {
 //		UsuarioLogado = usuarioLogado;
 //	}
-	
+	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+	 private List<Frequencia> frequencia;
 
 	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
 	private List<Nota> notas;
@@ -153,6 +154,19 @@ public class Usuario {
 		this.disciplinas = disciplinas;
 	}
 
-	
+
+	public List<Frequencia> getFrequencia() {
+		return frequencia;
+	}
+
+
+	public void setFrequencia(Frequencia frequencia) {
+		this.frequencia.add(frequencia);
+	}
+
+
+	public Set<Turma> getTurmausuario() {
+		return turmausuario;
+	}
 
 }

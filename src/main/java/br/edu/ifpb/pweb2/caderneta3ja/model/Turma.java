@@ -27,12 +27,9 @@ public class Turma {
 		 @ManyToMany
 		 Set<Disciplina> disciplina;
 		 
-		 @ManyToMany
+		 @ManyToMany(mappedBy="turmausuario")
 		 Set<Usuario> usuario;
-		 
-		 
-		
-		
+
 		// Construtores
 		public Turma(String codigo) {
 			this.codigo = codigo;
@@ -70,5 +67,12 @@ public class Turma {
 		public void addUsuario(Usuario u) {
 			this.usuario.add(u);
 		}
+		public Set<Usuario> getUsuario() {
+			return usuario;
+		}
+		public void setUsuario(Set<Usuario> usuario) {
+			this.usuario = usuario;
+		}
+		
 		
 	}

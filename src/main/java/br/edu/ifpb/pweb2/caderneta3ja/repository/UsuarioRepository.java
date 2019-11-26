@@ -23,8 +23,8 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Integer>{
 /*	@Query("SELECT u FROM Usuario u JOIN u.disciplinas d WHERE d.id = :id AND u.perfil = 'ALUNO'")
 	List<Usuario> findTurmaDisciplinaUserAluno(@Param("id")int id);*/
 	
-	@Query("SELECT u FROM Turma t JOIN t.usuario u WHERE t.id = :id AND u.perfil = 'ALUNO'")
-	List<Usuario> findUserAlunoByTurma(@Param("id")int id);
+	@Query(value = "select DISTINCT u.id, u.nome, u.matricula from usuario u LEFT JOIN turma_usuario tu ON u.id=tu.usuario_id LEFT JOIN turma t ON t.id=tu.turma_id LEFT JOIN disciplina d ON d.id = :did where t.id = :tid and u.tp_perfil='ALUNO'", nativeQuery = true)
+	List<Object> findUsuarioAlunoByTurmaDisciplina(@Param("tid")int tid, @Param("did")int did);
 	
 	@org.springframework.data.jpa.repository.Query("select c from Usuario c where c.perfil='?'")
 	List<Usuario> findByPerfil(String perfil);

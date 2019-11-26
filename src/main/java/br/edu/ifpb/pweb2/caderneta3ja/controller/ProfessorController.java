@@ -3,6 +3,7 @@ package br.edu.ifpb.pweb2.caderneta3ja.controller;
 import java.util.List;
 import java.util.Set;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +17,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import br.edu.ifpb.pweb2.caderneta3ja.model.Aula;
 import br.edu.ifpb.pweb2.caderneta3ja.model.Disciplina;
+import br.edu.ifpb.pweb2.caderneta3ja.model.Frequencia;
 import br.edu.ifpb.pweb2.caderneta3ja.model.Turma;
 import br.edu.ifpb.pweb2.caderneta3ja.model.Usuario;
+import br.edu.ifpb.pweb2.caderneta3ja.repository.AulaRepository;
 import br.edu.ifpb.pweb2.caderneta3ja.repository.DisciplinaRepository;
 import br.edu.ifpb.pweb2.caderneta3ja.repository.TurmaRepository;
 import br.edu.ifpb.pweb2.caderneta3ja.repository.UsuarioRepository;
@@ -34,21 +38,45 @@ public class ProfessorController {
 	
 	@Autowired
 	DisciplinaRepository disciplinaRepository;
+	
+	@Autowired
+	AulaRepository aulaRepository;
 
 	 @GetMapping("/{id}")
 	public ModelAndView listarTurmasProfessor(@PathVariable("id") Integer id, Model model) {
-		 model.addAttribute("turma", turmaRepository.findTurmaByUser(id));
-		 model.addAttribute("disciplina", disciplinaRepository.findDisciplinaByUserProfessor(id));
-		return new ModelAndView("professor/professor");
+		 	model.addAttribute("turma", turmaRepository.findTurmaDisciplinaByUser(id));
+	//		 model.addAttribute("disciplina", disciplinaRepository.findDisciplinaByUserProfessor(id));
+		 	return new ModelAndView("professor/professor");
 	}
 
 	
-	 @GetMapping("detalhes-turma/{id}/{uid}")
-	    public String detalhesTurma(@PathVariable("id") Integer id, @PathVariable("uid") Integer uid, Model model) {
+	 @GetMapping("detalhes-turma/{tid}/{did}/{uid}")
+	    public String detalhesTurma(@PathVariable("tid") Integer tid,@PathVariable("did") Integer did, @PathVariable("uid") Integer uid, Model model) {
 	        		
-	        model.addAttribute("aluno", usuarioRepository.findUserAlunoByTurma(id));
+		 	model.addAttribute("frequencia", new Frequencia());
+		 	
+	        model.addAttribute("aluno", usuarioRepository.findUsuarioAlunoByTurmaDisciplina(tid, did));
 	        return "professor/turma-professor";
 	 }
+	 
+	 @GetMapping("formulario-aula/{did}")
+	    public ModelAndView aulaForm(@PathVariable("did") Integer id, Model model) {
+		 
+		 model.addAttribute("disciplina", disciplinaRepository.findById(id));
+		 model.addAttribute("aula", new Aula());
+		 
+		 return new ModelAndView("professor/formulario-aula");
+	    }
+	 
+	 @PostMapping("cadastrar-aula")
+	    public String cadastrarAula(Aula aula, HttpServletRequest request) {
+
+		 String ultimaPagina = request.getHeader("Referer");
+		 
+		 aulaRepository.save(aula);
+		 
+	        return "redirect:"+ ultimaPagina;
+	    }
 	
 	/*
 	 * @GetMapping("/list") public String ListaProfessor(Model model) {
