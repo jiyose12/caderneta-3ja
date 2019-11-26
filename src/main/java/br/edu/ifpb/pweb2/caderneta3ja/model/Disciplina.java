@@ -33,8 +33,6 @@ public class Disciplina  {
 	   joinColumns = @JoinColumn(name = "disciplina_id"),
 	   inverseJoinColumns = @JoinColumn(name = "turma_id"))
 	 Set<Turma> turmadisciplina;
-
-	 
 	 
 	@OneToMany(mappedBy = "disciplina", cascade = CascadeType.ALL)
 	 private List<Aula> aula;

@@ -45,25 +45,25 @@ public class LoginController {
 	public String validacaoProfessor(Usuario usuario, HttpSession session) {
 		Usuario usuariobanco = (Usuario) usuarioDAO.findByEmail(usuario.getEmail());
 		String proxPagina = null;
-//		System.out.println("TESTE");
-//		System.out.println(usuario.getId());
+
+		session.setAttribute("usuario", usuariobanco);
 		
-		System.out.println(cifrar(usuariobanco));
+		System.out.println(cifrar(usuario));
 		System.out.println(cifrar(usuario));
 		
 		
 		if(usuario.getEmail().equals(usuariobanco.getEmail()) && usuario.getSenha().equals(usuariobanco.getSenha()) && usuariobanco.getPerfil() == Perfil.PROFESSOR) {
 			session.setAttribute("usuario", usuariobanco);
 //			usuario.setUsuarioLogado(true);
-			proxPagina = "redirect:professor";	
+			proxPagina = "redirect:professor/" + usuariobanco.getId();	
 		}else if(usuario.getEmail().equals(usuariobanco.getEmail()) && usuario.getSenha().equals(usuariobanco.getSenha()) && usuariobanco.getPerfil() == Perfil.ALUNO ){
 			session.setAttribute("usuario", usuariobanco);
 //			usuario.setUsuarioLogado(true);
-			proxPagina = "redirect:aluno";	
+			proxPagina = "redirect:aluno/" + usuariobanco.getId();	
 		}else if(usuario.getEmail().equals(usuariobanco.getEmail()) && usuario.getSenha().equals(usuariobanco.getSenha()) && usuariobanco.getPerfil() == Perfil.COORDENADOR){
 			session.setAttribute("usuario", usuariobanco);
 //			usuario.setUsuarioLogado(true);
-			proxPagina = "redirect:coordenador";	
+			proxPagina = "redirect:coordenador/" + usuariobanco.getId();	
 		} else {
 			proxPagina = "redirect:login";
 		}

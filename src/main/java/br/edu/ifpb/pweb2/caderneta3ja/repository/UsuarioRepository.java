@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,7 +20,11 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Integer>{
 	
 	Usuario findByEmail(String email);
 	
-	/* List<Usuario> findByPerfil(String perfil); */
+/*	@Query("SELECT u FROM Usuario u JOIN u.disciplinas d WHERE d.id = :id AND u.perfil = 'ALUNO'")
+	List<Usuario> findTurmaDisciplinaUserAluno(@Param("id")int id);*/
+	
+	@Query("SELECT u FROM Turma t JOIN t.usuario u WHERE t.id = :id AND u.perfil = 'ALUNO'")
+	List<Usuario> findUserAlunoByTurma(@Param("id")int id);
 	
 	@org.springframework.data.jpa.repository.Query("select c from Usuario c where c.perfil='?'")
 	List<Usuario> findByPerfil(String perfil);

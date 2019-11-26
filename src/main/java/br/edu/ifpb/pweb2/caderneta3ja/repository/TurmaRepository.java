@@ -11,22 +11,18 @@ import org.springframework.transaction.annotation.Transactional;
 
 import br.edu.ifpb.pweb2.caderneta3ja.model.Disciplina;
 import br.edu.ifpb.pweb2.caderneta3ja.model.Turma;
+import br.edu.ifpb.pweb2.caderneta3ja.model.Usuario;
 
 @Repository
 @Transactional(readOnly = true)
 public interface TurmaRepository extends JpaRepository <Turma, Integer> {
 	// Implementação feita pelo próprio Spring Boot
 	
-	Turma findById(long id);
+	/*@Query("SELECT DISTINCT t FROM Usuario u JOIN u.disciplinas d JOIN d.turmadisciplina t WHERE u.id = :id")
+	List<Turma> findTurmaByUser(@Param("id")int id);*/
 	
-//	@Query(value = "select t.codigo from Turma t JOIN Disciplina d ON t.id = d.id ", nativeQuery = true)
-	@org.springframework.data.jpa.repository.Query(value = "select d from Disciplina d join d.turmadisciplina")
-	List<Disciplina> findAllTurmaDisciplina();
+	@Query("SELECT DISTINCT t FROM Turma t JOIN t.usuario u WHERE u.id = :id")
+	List<Turma> findTurmaByUser(@Param("id")int id);
 	
-	
-//	@Query("SELECT  u.codigo FROM  Turma u INNER JOIN Disciplina a ON a.id = u.id WHERE a.id = :codigo")
-//			List<Turma> findByIdarea(@Param("codigo") Long codigo);
-	
-
 
 }
