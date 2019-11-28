@@ -28,16 +28,17 @@
 							<thead>
 								<tr>
 									<th>Código</th>
-									<th>Disciplina</th>
+									<th>Curso</th>
 
-									<th>Botão</th>
+									<th>Disciplina</th>
 
 								</tr>
 							</thead>
 							<tbody>
 								<tr th:each="turma : ${turma}">
-									<td th:text="${turma.codigo}"></td>
-									<td th:text="${turma.disciplina}"></td>
+									<td th:text="${turma.id}"></td>
+									<td th:text="${turma.curso}"></td>
+									<td th:text="${turma.nome}"></td>
 <!-- 									<td><a
 										th:href="@{/professor/detalhes-turma/{id}(id=${student.id})}"
 										class="btn btn-primary"><i class="fas fa-user-times ml-2"></i></a></td> -->

@@ -33,6 +33,18 @@ public class Usuario {
 	@Column(name="TP_PERFIL")
 	@Enumerated(EnumType.STRING)
 	private Perfil perfil;
+	
+//	private boolean UsuarioLogado = false;
+	
+//	public boolean isUsuarioLogado() {
+//		return UsuarioLogado;
+//	}
+//
+//
+//	public void setUsuarioLogado(boolean usuarioLogado) {
+//		UsuarioLogado = usuarioLogado;
+//	}
+	
 
 	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
 	private List<Nota> notas;
@@ -132,7 +144,15 @@ public class Usuario {
 	}
 
 
+	public List<Disciplina> getDisciplinas() {
+		return disciplinas;
+	}
 
 
+	public void setDisciplinas(List<Disciplina> disciplinas) {
+		this.disciplinas = disciplinas;
+	}
+
+	
 
 }

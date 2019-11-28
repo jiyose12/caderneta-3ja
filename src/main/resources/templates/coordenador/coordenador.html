@@ -13,7 +13,8 @@
     margin-left: 500px;
     margin-bottom: -46px;
 " >
-	<button type="button" class="btn btn-primary">Cadastrar Professor Disciplina</button> 
+	
+	<a href="coordenador/cadastrar-professor-disciplina" class="btn btn-primary">Cadastrar Professor Disciplina</a>    
 	<button type="button" class="btn btn-primary">Visualizar Disciplina</button> 
 	<button type="button" class="btn btn-primary">Matricular Aluno</button> 
 </div>
@@ -23,7 +24,7 @@
  <div class="row" style = "margin-top:60px;">
  <div class="col-sm d-flex justify-content-around mb-4">
  
-   <div class="card" style="width: 18rem;">
+   <div class="card" style="width: 18rem;border-radius: 30px;border-color: #007bff;border-width: 5px;">
   
   <img th:src="@{/images/prof.png}" class="card-img-top" alt="..." style="
     width: 185px;
@@ -33,22 +34,20 @@
   
   	
 	
-	<a href="professor/signup" class="btn btn-primary">Cadastrar</a>    
-	<a href="professor/list" class="btn btn-success">Lista</a>
+	<a href="coordenador/cadastra-professor" class="btn btn-primary" style=" border-radius: 15px">Cadastrar</a>    
+	<a href="coordenador/list-professor" class="btn btn-success" style="margin-left: 39px;width: 93px;border-radius: 15px;">Lista</a>
 	
   </div>
 </div>
 
-  <div class="card" style="width: 18rem;">
+  <div class="card" style="width: 18rem;border-radius: 30px;border-color: #007bff;border-width: 5px;">
   
-  <img th:src="@{/images/stud.png}"  class="card-img-top" alt="..." style="
-    width: 185px;
-    margin-left: 43px;">
+  <img th:src="@{/images/stud.png}"  class="card-img-top" alt="..." style="width: 185px;margin-left: 43px;">
   
    <h5 class="card-title text-center">Aluno</h5>
   <div class="card-body">
-  	<a href="aluno/signup" class="btn btn-primary">Cadastrar</a>    
-	<a href="aluno/list" class="btn btn-success">Lista</a>
+  	<a href="coordenador/cadastra-aluno" class="btn btn-primary"style=" border-radius: 15px">Cadastrar</a>    
+	<a href="coordenador/list-aluno" class="btn btn-success"style="margin-left: 39px;width: 93px;border-radius: 15px;">Lista</a>
   
   </div>
 </div>
@@ -64,29 +63,29 @@
 
 <div class="row">
  <div class="col-sm d-flex justify-content-around mb-4">
-     <div class="card" style="width: 18rem;">
+     <div class="card" style="width: 18rem;border-radius: 30px;border-color: #007bff;border-width: 5px;">
   
   <img th:src="@{/images/dicip.png}"  class="card-img-top" alt="..." style="
     width: 185px;
     margin-left: 43px;">
    <h5 class="card-title text-center">Disciplina</h5>
   <div class="card-body">
-  	<a href="disciplina/signup" class="btn btn-primary">Cadastrar</a>   
-	<a href="disciplina/list" class="btn btn-success">Lista</a> 
+  	<a href="coordenador/cadastra-disciplina" class="btn btn-primary"style=" border-radius: 15px">Cadastrar</a>   
+	<a href="coordenador/list-disciplina" class="btn btn-success"style="margin-left: 39px;width: 93px;border-radius: 15px;">Lista</a> 
   
     
   </div>
 </div>
 
-  <div class="card" style="width: 18rem;">
+  <div class="card" style="width: 18rem;border-radius: 30px;border-color: #007bff;border-width: 5px;">
   
   <img th:src="@{/images/tt.png}"  class="card-img-top" alt="..." style="
     width: 185px;
     margin-left: 43px;">
    <h5 class="card-title text-center">Turma</h5>
   <div class="card-body">
-	<button type="button" class="btn btn-primary">Cadastrar</button>  
-	<button type="button" class="btn btn-success">Lista</button>  
+	<a href="coordenador/cadastra-turma" class="btn btn-primary"style=" border-radius: 15px">Cadastrar</a>   
+	<a href="coordenador/list-turma" class="btn btn-success"style="margin-left: 39px;width: 93px;border-radius: 15px;">Lista</a> 
   </div>
 </div>
    
@@ -96,6 +95,10 @@
 
 
 </section>
+
+
+
+
 
 </body>
 </html>

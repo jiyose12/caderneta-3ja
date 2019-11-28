@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns="http://www.w3.org/1999/html"
+      layout:decorate="~{layout.html}">
+
+<head>
+    <title>Cadastrar Professor em Disciplina</title>
+</head>
+
+<body>
+<section layout:fragment="content">
+<a href="/coordenador" class="btn btn-primary">Volta</a> 
+    <h1>Cadastrar Professor em Disciplina</h1>
+
+		
+		<div class="container">
+
+			 <table>
+				<tr>
+					<td><h2 align="left">Disciplina:</h2></td>
+					<td><select th:field="*{disciplina}" name="disciplina">
+							<option th:each="r : ${disciplina}" th:value="${r.nome}"
+								th:text="${r.nome}"></option>
+					</select></td>
+				</tr>
+
+				
+			</table> 
+			
+			
+			<table>
+				<tr>
+					<td><h2 align="left">Professor:</h2></td>
+					<td><select th:field="*{tb_professor}" name="usuario">
+							<option th:each="r : ${tb_professor}" th:value="${r.nome}"
+								th:text="${r.nome}"></option>
+					</select></td>
+				</tr>
+
+				<tr>
+					<td><input type="submit" value="cadastrar " /></td>
+				</tr>
+			</table>
+		</div>
+</section>
+</body>
+</html>

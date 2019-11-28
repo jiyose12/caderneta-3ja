@@ -36,8 +36,8 @@
                                         <td th:text="${student.nome}"></td>
                                         <td th:text="${student.curso}"></td>
                                          <td th:text="${student.codigo}"></td>
-                                        <td><a th:href="@{/disciplina/edit/{id}(id=${student.id})}" class="btn btn-primary"><i class="fas fa-user-edit ml-2"></i></a></td>
-                                        <td><a th:href="@{/disciplina/delet/{id}(id=${student.id})}" class="btn btn-primary"><i class="fas fa-user-times ml-2"></i></a></td>
+                                        <td><a th:href="@{/coordenador/edit-disciplna/{id}(id=${student.id})}" class="btn btn-primary"><i class="fas fa-user-edit ml-2"></i></a></td>
+                                        <td><a th:href="@{/coordenador/deletD/{id}(id=${student.id})}" class="btn btn-primary"><i class="fas fa-user-times ml-2"></i></a></td>
                                        
                                        
                                     </tr>
