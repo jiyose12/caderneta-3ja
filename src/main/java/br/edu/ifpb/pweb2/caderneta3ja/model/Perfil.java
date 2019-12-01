@@ -1,7 +1,5 @@
 package br.edu.ifpb.pweb2.caderneta3ja.model;
 
-
-
 public enum Perfil {
 	
 	ALUNO("Aluno"),

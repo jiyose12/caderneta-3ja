@@ -11,7 +11,7 @@
 <a href="/coordenador" class="btn btn-primary">Volta</a> 
     <h1>Cadastrar Professor</h1>
 
-		<form action="#" th:action="@{/professor/add}" th:object="${usuario}"
+		<form action="#" th:action="@{/coordenador/add}" th:object="${usuario}"
 			method="post">
 			<div class="row">
 
@@ -30,11 +30,7 @@
 						th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
 						class="text-danger"></span>
 				</div>
-				
-				
-				
-				
-				
+		
 				<div class="form-group col-md-8">
 					<label for="senha" class="col-form-label">senha</label> <input
 						type="text" th:field="*{senha}" class="form-control" id="senha"
@@ -47,7 +43,7 @@
 				<div class="form-group col-md-8">
 					<label for="tp_perfil" class="col-form-label">Perfil</label> <input
 						type="text" th:field="*{perfil}" class="form-control" id="tp_perfil"
-						placeholder="senha"> 
+						value="${usuario.tp_perfil = 'PROFESSOR'}"> 
 				</div>
 				
 				

@@ -9,7 +9,7 @@
 <body>
 <section layout:fragment="content">
 <div class="container">
-    <h1>Minha Turma</h1>
+    <h1>Minha Turma de <span th:utext="${disciplina.nome}">Description</span> <span th:utext="${turma.codigo}">Description</span></h1>
     
 <!-- nav tab bootstrap4 -->
 <ul class="nav nav-tabs" role="tablist">
@@ -33,15 +33,16 @@
   						<table class="table table-striped table-responsive-md">
 							<thead>
 								<tr>
+									<th></th>
 									<th>Nome</th>
 									<th>Matrícula</th>
-									<th>Botão</th>
 								</tr>
 							</thead>
 							<tbody>
-							<tr th:each="_aluno : ${aluno}">
-	 		 				<td th:text="${_aluno.nome}"></td>				
-							<td th:text="${_aluno.matricula}"></td>
+							<tr th:each="_aluno,d : ${aluno}">
+							<td th:text="${d.index}"></td>
+	 		 				<td th:text="${_aluno[1]}"></td>	
+	 		 				<td th:text="${_aluno[2]}"></td> 
 			 
  								<!-- 	<td><a
 										th:href="@{/professor/detalhes-turma/{id}/{uid}(id=${_disciplina.id},uid=${session.usuario.id})}"
@@ -52,13 +53,55 @@
   
   
   </div>
-  <div role="tabpanel" class="tab-pane fade" id="freq">Eis o registro de frequência</div>
-  <div role="tabpanel" class="tab-pane fade" id="aula">Registros de aulas ficarão aqui</div>
+  <!-- Registro de Frequencia -->
+  <div role="tabpanel" class="tab-pane fade" id="freq">
+  	<form th:action="@{/foo}" method="">
+  	<table class="table table-striped table-responsive-md">
+  		<thead>
+			<tr>
+				<th></th>
+				<th>Nome</th>
+				<th>Data</th>
+				<th>Presença</th>
+				<th>Botão</th>
+			</tr>
+		</thead>
+							
+  	<tbody>
+  	<tr th:each="aluno,d : ${aluno}">
+  		<td th:text="${d.index}"></td>
+	      <td th:text="${aluno[1]}"></td>
+	      <td><input type="datetime-local" name="date" id="date" th:value="${frequencia.date}" class="form-control" required></td>
+  <!--     <input type="text" th:value="${bar.status}" name="status"/> -->
+  			<td>True/False</td>
+      <td> <button type="submit" class="btn btn-primary">Cadastrar</button></td>
+     
+     </tr>
+     </tbody>
+     </table>
+	</form>
+  </div>
+  <!-- Registro de Aula -->
+  <div role="tabpanel" class="tab-pane fade" id="aula">
+	  <div class="row" style = "margin-top:60px;">
+	  
+	   <div class="col-sm d-flex justify-content-around mb-4">
+  
+   <h5 class="card-title text-center">Registros de aulas ficarão aqui</h5>
+  
+	<a th:href="@{/professor/formulario-aula/__${disciplina.id}__}" class="btn btn-primary">Cadastrar nova aula</a>    
+
+</div>
+
+	  </div>
+  </div>
+  
+  <!-- Registro de Notas -->
   <div role="tabpanel" class="tab-pane fade" id="nota">Aqui ficará o registro de notas dos alunos</div>
 </div>
 <!-- fim nav tab -->
 </div>
 </section>
-
+  
 </body>
 </html>

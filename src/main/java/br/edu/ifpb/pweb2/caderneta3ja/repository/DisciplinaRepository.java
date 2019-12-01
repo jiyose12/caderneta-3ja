@@ -19,4 +19,6 @@ public interface DisciplinaRepository extends JpaRepository <Disciplina, Integer
 	List<Disciplina> findAllDisciplinaTurma();
 	
 
+	@Query("SELECT DISTINCT d FROM Usuario u JOIN u.disciplinas d JOIN d.turmadisciplina t WHERE u.id = :id AND u.perfil = 'ALUNO'")
+	List<Disciplina> findDisciplinaByUserAluno(@Param("id")int id);
 }

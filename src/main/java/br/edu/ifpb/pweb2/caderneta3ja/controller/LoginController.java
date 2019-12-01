@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -29,8 +30,6 @@ public class LoginController {
 	@Autowired
 	private UsuarioRepository usuarioDAO;
 	
-	
-	
 	@RequestMapping(value = "login", method=RequestMethod.GET)
 	public String loginForm(Model model, @CookieValue(value = "clogin", defaultValue = "") String clogin) {
 		Usuario u = new Usuario();
@@ -42,9 +41,13 @@ public class LoginController {
 	
 
 	@RequestMapping(value = "login", method=RequestMethod.POST)
-	public String validacaoProfessor(Usuario usuario, HttpSession session) {
+	public String validacaoProfessor(Usuario usuario, HttpSession session, HttpServletRequest request) {
 		Usuario usuariobanco = (Usuario) usuarioDAO.findByEmail(usuario.getEmail());
 		String proxPagina = null;
+//		retorna para pagina login (ajeitar para retornar para ultima pagina)
+		String ultimaPagina = request.getHeader("Referer");
+		
+		request.getSession().setAttribute("ultimaPagina", ultimaPagina);
 
 		session.setAttribute("usuario", usuariobanco);
 		

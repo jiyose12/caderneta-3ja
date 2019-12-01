@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout.html}">
+
+<head>
+    <meta charset="UTF-8"/>
+    <title>Edit Turma</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    
+
+</head>
+<body>
+<section layout:fragment="content">
+<div class="container">
+
+    <h1>Editar Turma</h1>
+    <a href="/coordenador/list-turma" class="btn btn-primary">Volta</a> 
+    <div align="right">
+        <form th:action="@{/employee/list}" method="get">
+            <div class="input-group input-group-sm" style="width: 450px;">
+                <input type="text" name="value" class="form-control pull-right" placeholder="Pencarian Berdasarnkan Nama" th:if="${key} == null"/>
+                <input type="text" name="value" class="form-control pull-right" placeholder="Pencarian Berdasarnkan Nama" th:if="${key} != null" th:value="${key}" />
+                <div class="input-group-btn">
+                    <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i>Go...</button>
+                </div>
+            </div>
+        </form>
+    </div>
+<!-- datatable bootstrap4 -->
+   
+   
+      <div class="card">
+            <div class="card-body">
+                <div class="col-md-8">
+                   <form action="#" th:action="@{/coordenador/updateTurma/{id}(id=${turma.id})}" th:object="${turma}" method="post">
+                        <div class="row">     
+                        
+                        <div class="form-group col-md-8">
+                                <label for="codigo" class="col-form-label">Codigo</label> <input type="text" th:field="*{codigo}" class="form-control" id="codigo" placeholder="codigo"> <span th:if="${#fields.hasErrors('codigo')}" th:errors="*{codigo}" class="text-danger"></span>
+                            </div>
+ 
+
+                            <div class="form-group col-md-8">
+                                <input type="submit" class="btn btn-primary" value="edit Usuario">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+<!-- fim datable -->
+</div>
+
+
+</section>
+
+</body>
+</html>

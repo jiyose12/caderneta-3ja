@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns="http://www.w3.org/1999/html"
+      layout:decorate="~{layout.html}">
+
+<head>
+    <title>Cadastrar Turma</title>
+</head>
+
+<body>
+<section layout:fragment="content">
+<a href="/coordenador" class="btn btn-primary">Volta</a> 
+    <h1>Cadastrar Turma</h1>
+
+		<form action="#" th:action="@{/coordenador/add-turma}" th:object="${turma}"
+			method="post">
+			<div class="row">
+
+				<div class="form-group col-md-8">
+					<label for="codigo" class="col-form-label">Codigo</label> <input
+						type="text" th:field="*{codigo}" class="form-control" id="codigo"
+						placeholder="Codigo"> <span
+						th:if="${#fields.hasErrors('codigo')}" th:errors="*{codigo}"
+						class="text-danger"></span>
+				</div>
+
+				<div class="col-md-6">
+					<input type="submit" class="btn btn-primary" value="Add Turma">
+				</div>
+
+				<div class="form-group col-md-8"></div>
+
+			</div>
+		</form>
+
+		<div class="container">
+       
+    </div>
+</section>
+</body>
+</html>

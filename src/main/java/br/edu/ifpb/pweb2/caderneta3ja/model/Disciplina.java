@@ -36,8 +36,12 @@ public class Disciplina  {
 	 
 	@OneToMany(mappedBy = "disciplina", cascade = CascadeType.ALL)
 	 private List<Aula> aula;
+
+	 	@OneToMany(mappedBy = "disciplina", cascade = CascadeType.ALL)
+	 private List<Nota> notas;
  
 	@ManyToOne
+	@JoinColumn(name = "usuario_id")
 	private Usuario usuario;
 	
 	//Construtores
@@ -95,6 +99,22 @@ public class Disciplina  {
 	
 	public void addAula(Aula a) {
 		this.aula.add(a);
+	}
+
+	public List<Aula> getAula() {
+		return aula;
+	}
+
+	public void setAula(List<Aula> aula) {
+		this.aula = aula;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 	

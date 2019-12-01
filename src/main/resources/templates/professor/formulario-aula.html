@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout.html}">
+
+<head>
+<meta charset="UTF-8" />
+<title>Professor</title>
+
+</head>
+<body>
+
+	<section layout:fragment="content">
+		<div class="container">
+
+			<h1>Professor: Cadastrar Aula de <span th:utext="${disciplina.nome}">Description</span></h1>
+			<div class="container-fluid" style="width: 45rem;">
+				<form action="#" method = "POST" th:action="@{/professor/cadastrar-aula/__${disciplina.id}__}" th:object = "${aula}" id = "aula">
+				<div class="container-fluid">
+					<div class="col-sm d-flex justify-content-center mb-4">
+			            <span class="mr-4">Data:</span> 
+			            <input type="datetime-local" name="date" id="date" th:field="*{date}" class="form-control" required  onchange="this.value.split('T')[0];">
+					</div>
+					<div class="col-sm d-flex justify-content-center mb-4">
+		            <span class="mr-2">Assunto: </span> <textarea class="form-control"  rows = "10" cols = "80" th:field ="*{assunto}" form = "aula" >... </textarea>
+		            </div>
+		            
+		            <input type = "submit" value = "Salvar" class="btn btn-primary"/>
+		            </div>
+		        </form>
+			</div>
+	
+		</div>
+	</section>
+	
+     
+
+</body>
+</html>
