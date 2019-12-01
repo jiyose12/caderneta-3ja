@@ -1,7 +1,5 @@
 package br.edu.ifpb.pweb2.caderneta3ja.model;
 
-
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;

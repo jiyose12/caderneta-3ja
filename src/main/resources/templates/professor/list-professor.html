@@ -34,8 +34,8 @@
                                     <tr th:each="student : ${tb_professor}">
                                         <td th:text="${student.nome}"></td>
                                         <td th:text="${student.email}"></td>
-                                        <td><a th:href="@{/professor/edit/{id}(id=${student.id})}" class="btn btn-primary"><i class="fas fa-user-edit ml-2"></i></a></td>
-                                        <td><a th:href="@{/professor/delet/{id}(id=${student.id})}" class="btn btn-primary"><i class="fas fa-user-times ml-2"></i></a></td>
+                                        <td><a th:href="@{/coordenador/edit-professor/{id}(id=${student.id})}" class="btn btn-primary"><i class="fas fa-user-edit ml-2"></i></a></td>
+                                        <td><a th:href="@{/coordenador/delet/{id}(id=${student.id})}" class="btn btn-primary"><i class="fas fa-user-times ml-2"></i></a></td>
                                        
                                        
                                     </tr>
