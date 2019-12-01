@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import br.edu.ifpb.pweb2.caderneta3ja.model.Disciplina;
 import br.edu.ifpb.pweb2.caderneta3ja.model.Turma;
 import br.edu.ifpb.pweb2.caderneta3ja.model.Usuario;
+import br.edu.ifpb.pweb2.caderneta3ja.repository.DisciplinaRepository;
 import br.edu.ifpb.pweb2.caderneta3ja.repository.TurmaRepository;
 import br.edu.ifpb.pweb2.caderneta3ja.repository.UsuarioRepository;
 
@@ -37,7 +38,7 @@ public class ProfessorController {
 	}
 	
 
-	
+	 	
 	 @GetMapping("detalhes-turma/{id}")
 	    public String detalhesTurma(@PathVariable("id") Integer id, Model model) {
 	        Usuario usuario = usuarioRepository.findById(id)
@@ -90,9 +91,6 @@ public class ProfessorController {
 	       
 	        return "redirect:list";
 	    }
-	 
-	 
-	 
 	 
 	 @GetMapping("edit/{id}")
 	    public String showUpdateForm(@PathVariable("id") Integer id, Model model) {

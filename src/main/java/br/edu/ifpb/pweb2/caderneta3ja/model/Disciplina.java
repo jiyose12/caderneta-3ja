@@ -34,6 +34,8 @@ public class Disciplina  {
 	   inverseJoinColumns = @JoinColumn(name = "turma_id"))
 	 Set<Turma> turmadisciplina;
 
+	 @OneToMany(mappedBy = "disciplina", cascade = CascadeType.ALL)
+	 private List<Nota> notas;
 	 
 	 
 	@OneToMany(mappedBy = "disciplina", cascade = CascadeType.ALL)
@@ -98,6 +100,7 @@ public class Disciplina  {
 	public void addAula(Aula a) {
 		this.aula.add(a);
 	}
+	
 
 	
 	

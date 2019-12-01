@@ -16,6 +16,11 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.TableGenerator;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
+
+import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name="usuario")
@@ -26,8 +31,11 @@ public class Usuario {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 
+	@NotEmpty(message="Campo nome é obrigatório")
 	private String nome;
+	@Pattern(regexp = "^[A-Za-z0-9+_.-]+@(.+)$", message= "Digite um email valido. Exemplo: teste@gmail.com")
 	private String email;
+
 	private String matricula;
 	private String senha;
 	@Column(name="TP_PERFIL")
@@ -151,6 +159,16 @@ public class Usuario {
 
 	public void setDisciplinas(List<Disciplina> disciplinas) {
 		this.disciplinas = disciplinas;
+	}
+
+
+	public Set<Turma> getTurmausuario() {
+		return turmausuario;
+	}
+
+
+	public void setTurmausuario(Set<Turma> turmausuario) {
+		this.turmausuario = turmausuario;
 	}
 
 	

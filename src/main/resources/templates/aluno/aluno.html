@@ -13,39 +13,37 @@
 
 			<h1>Aluno</h1>
 			<div class="container-fluid">
-				<div class="row ">
 
-					<div class="col-sm d-flex justify-content-around mb-4">
+					<div class="row ">
 
-						<div class="card" style="width: 18rem;">
+						<div class="col-sm d-flex justify-content-around mb-4">
+							<div class="card" style="width: 18rem;">
 
-							<img th:src="@{/images/dicip.png}" class="card-img-top" alt="..."
-								style="width: 185px; margin-left: 43px;">
-							<h5 class="card-title text-center">Visualizar Disciplina</h5>
-							<div class="card-body">
+								<img th:src="@{/images/dicip.png}" class="card-img-top"
+									alt="..." style="width: 185px; margin-left: 43px;">
+								<h5 class="card-title text-center">Visualizar Disciplina</h5>
+								<div class="card-body">
 
-								<button type="button" class="btn btn-success btn-lg btn-block">Ver</button>
-								
+									<a th:href="@{/aluno/visualizar-disciplinas/{id}(id=${session.usuario.id})}" class="btn btn-success btn-lg btn-block">Ver</a> 
+
+								</div>
 							</div>
-						</div>
 
-						<div class="card" style="width: 18rem;">
+							<div class="card" style="width: 18rem;">
 
-							<img th:src="@{/images/notaFalta.png}" class="card-img-top" alt="..."
-								style="width: 185px; margin-left: 43px;">
+								<img th:src="@{/images/notaFalta.png}" class="card-img-top"
+									alt="..." style="width: 185px; margin-left: 43px;">
 
-							<h5 class="card-title text-center">Visualizar Nota e Falta</h5>
-							<div class="card-body">
-								<button type="button" class="btn btn-success btn-lg btn-block">Ver</button>
-								
+								<h5 class="card-title text-center">Visualizar Nota e Falta</h5>
+								<div class="card-body">
+									<a th:href="@{/aluno/listar-notas/{id}(id=${session.usuario.id})}" class="btn btn-success btn-lg btn-block">Ver</a>
 
+
+								</div>
 							</div>
-						</div>
 
+						</div>
 					</div>
-				</div>
-
-
 			</div>
 
 		</div>

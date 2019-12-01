@@ -19,13 +19,15 @@ public interface TurmaRepository extends JpaRepository <Turma, Integer> {
 	
 	Turma findById(long id);
 	
-//	@Query(value = "select t.codigo from Turma t JOIN Disciplina d ON t.id = d.id ", nativeQuery = true)
+
 	@org.springframework.data.jpa.repository.Query(value = "select d from Disciplina d join d.turmadisciplina")
 	List<Disciplina> findAllTurmaDisciplina();
 	
 	
-//	@Query("SELECT  u.codigo FROM  Turma u INNER JOIN Disciplina a ON a.id = u.id WHERE a.id = :codigo")
-//			List<Turma> findByIdarea(@Param("codigo") Long codigo);
+	@Query("SELECT DISTINCT t FROM Turma t JOIN t.usuario u WHERE u.id = :id")
+	List<Turma> findTurmaByUser(@Param("id")int id);
+	
+
 	
 
 

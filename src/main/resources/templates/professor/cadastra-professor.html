@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns="http://www.w3.org/1999/html"
-      layout:decorate="~{layout.html}">
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns="http://www.w3.org/1999/html" layout:decorate="~{layout.html}">
 
 <head>
-    <title>Cadastrar Professor</title>
+<title>Cadastrar Professor</title>
 </head>
 
 <body>
-<section layout:fragment="content">
-<a href="/coordenador" class="btn btn-primary">Volta</a> 
-    <h1>Cadastrar Professor</h1>
+	<section layout:fragment="content">
+		<a href="/coordenador" class="btn btn-primary">Volta</a>
+		<h1>Cadastrar Professor</h1>
 
 		<form action="#" th:action="@{/professor/add}" th:object="${usuario}"
 			method="post">
@@ -30,11 +30,11 @@
 						th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
 						class="text-danger"></span>
 				</div>
-				
-				
-				
-				
-				
+
+
+
+
+
 				<div class="form-group col-md-8">
 					<label for="senha" class="col-form-label">senha</label> <input
 						type="text" th:field="*{senha}" class="form-control" id="senha"
@@ -42,18 +42,18 @@
 						th:if="${#fields.hasErrors('senha')}" th:errors="*{senha}"
 						class="text-danger"></span>
 				</div>
-				
-				
+
+
 				<div class="form-group col-md-8">
 					<label for="tp_perfil" class="col-form-label">Perfil</label> <input
-						type="text" th:field="*{perfil}" class="form-control" id="tp_perfil"
-						placeholder="senha"> 
+						type="text" th:field="*{perfil}" class="form-control"
+						id="tp_perfil" placeholder="senha">
 				</div>
-				
-				
-				
-				
-				
+
+
+
+
+
 
 
 
@@ -66,9 +66,7 @@
 			</div>
 		</form>
 
-		<div class="container">
-       
-    </div>
-</section>
+		<div class="container"></div>
+	</section>
 </body>
 </html>
