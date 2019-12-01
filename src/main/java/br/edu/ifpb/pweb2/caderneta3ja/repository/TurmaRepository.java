@@ -24,4 +24,5 @@ public interface TurmaRepository extends JpaRepository <Turma, Integer> {
 //	@Query("SELECT DISTINCT t FROM Turma t LEFT JOIN t.usuario u WHERE u.id = :id")
 //	List<Turma> findTurmaByUser(@Param("id")int id);
 
+
 }

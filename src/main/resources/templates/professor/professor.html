@@ -11,7 +11,7 @@
 	<section layout:fragment="content">
 		<div class="container">
 
-			<h1>Professor</h1>
+			<h1>Professor <span th:utext="${session.usuario.nome}">Description</span></h1>
 			<div class="container-fluid">
 				<div class="row">
 
@@ -47,6 +47,8 @@
 								</tr>
 							</tbody>
 						</table> 
+						
+	
 					</div>
 				</div>
 			</div>

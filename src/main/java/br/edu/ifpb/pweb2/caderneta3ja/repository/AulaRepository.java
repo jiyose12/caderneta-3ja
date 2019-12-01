@@ -11,6 +11,6 @@ import br.edu.ifpb.pweb2.caderneta3ja.model.Aula;
 public interface AulaRepository extends JpaRepository <Aula, Integer> {
 	// Implementação feita pelo próprio Spring Boot
 	
-	@Query("SELECT DISTINCT a FROM aula a LEFT JOIN a.disciplina d WHERE d.id = :did")
+	@Query("SELECT DISTINCT a FROM Aula a LEFT JOIN a.disciplina d WHERE d.id = :did")
 	List<Aula> findAulaByDisciplina(@Param("did")int did);
 }

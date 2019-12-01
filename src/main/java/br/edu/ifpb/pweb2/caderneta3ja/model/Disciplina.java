@@ -36,6 +36,9 @@ public class Disciplina  {
 	 
 	@OneToMany(mappedBy = "disciplina", cascade = CascadeType.ALL)
 	 private List<Aula> aula;
+
+	 	@OneToMany(mappedBy = "disciplina", cascade = CascadeType.ALL)
+	 private List<Nota> notas;
  
 	@ManyToOne
 	@JoinColumn(name = "usuario_id")

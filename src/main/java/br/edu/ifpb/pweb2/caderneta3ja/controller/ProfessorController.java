@@ -1,6 +1,7 @@
 package br.edu.ifpb.pweb2.caderneta3ja.controller;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
@@ -45,33 +46,41 @@ public class ProfessorController {
 	 @GetMapping("/{id}")
 	public ModelAndView listarTurmasProfessor(@PathVariable("id") Integer id, Model model) {
 		 	model.addAttribute("turma", turmaRepository.findTurmaDisciplinaByUser(id));
-	//		 model.addAttribute("disciplina", disciplinaRepository.findDisciplinaByUserProfessor(id));
+
 		 	return new ModelAndView("professor/professor");
 	}
 
 	
 	 @GetMapping("detalhes-turma/{tid}/{did}/{uid}")
 	    public String detalhesTurma(@PathVariable("tid") Integer tid,@PathVariable("did") Integer did, @PathVariable("uid") Integer uid, Model model) {
-	        		
+	     
+//		 model.addAttribute("aula", aulaRepository.findById(tid).get());
+		 model.addAttribute("turma", turmaRepository.findById(tid).get());
 		 	model.addAttribute("frequencia", new Frequencia());
-		 	
+		 	model.addAttribute("disciplina", disciplinaRepository.findById(did).get());
 	        model.addAttribute("aluno", usuarioRepository.findUsuarioAlunoByTurmaDisciplina(tid, did));
+	        
 	        return "professor/turma-professor";
 	 }
 	 
 	 @GetMapping("formulario-aula/{did}")
 	    public ModelAndView aulaForm(@PathVariable("did") Integer id, Model model) {
 		 
-		 model.addAttribute("disciplina", disciplinaRepository.findById(id));
+		 model.addAttribute("disciplina", disciplinaRepository.findById(id).get());
+		 
 		 model.addAttribute("aula", new Aula());
 		 
 		 return new ModelAndView("professor/formulario-aula");
 	    }
 	 
-	 @PostMapping("cadastrar-aula")
-	    public String cadastrarAula(Aula aula, HttpServletRequest request) {
+	 @PostMapping("cadastrar-aula/{did}")
+	    public String cadastrarAula(@PathVariable("did") Integer did, Aula aula, HttpServletRequest request) {
 
-		 String ultimaPagina = request.getHeader("Referer");
+		 String ultimaPagina = request.getHeader("Referer");	 
+		 
+		 Optional<Disciplina> d = disciplinaRepository.findById(did);
+		 
+		 aula.setDisciplina(d.get());
 		 
 		 aulaRepository.save(aula);
 		 
