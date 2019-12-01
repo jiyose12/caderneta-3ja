@@ -205,7 +205,8 @@ public class CoordenadorController {
 	    }
 	 
 	 @GetMapping("cadastra-disciplina")
-	    public String showSignUpForm(Disciplina disciplina) {
+	    public String showSignUpForm(Disciplina disciplina, Model model) {
+		 model.addAttribute("tb_professor", usuarioRepository.findByPerfilProfessor("PROFESSOR"));
 	        return "disciplina/cadastradisciplina";
 	    }
 	 
@@ -282,7 +283,7 @@ public class CoordenadorController {
 	 
 //	 **********************************************************************
 	 
-//		***COORDENADOR 	CADASTRAR PROFESSOR&TURMA**
+//		***COORDENADOR 	CADASTRAR PROFESSOR&DISCIPLINA**
 	 
 	 
 	 @GetMapping("cadastrar-professor-disciplina")
@@ -291,6 +292,19 @@ public class CoordenadorController {
 		 model.addAttribute("tb_professor", usuarioRepository.findByPerfilProfessor("PROFESSOR"));
 			return new ModelAndView("coordenador/cadastrar-professor-disciplina");
 		}
+	 
+	 
+	 @PostMapping("add-turma")
+	    public String AddProfessoDisciplina(@Valid Disciplina disciplina, BindingResult result, Model model) {
+	        if (result.hasErrors()) {
+	            return "turma/cadastraturma";
+	        }
+	       
+	        disciplinaRepository.save(disciplina);
+	        
+	       
+	        return "redirect:/coordenador/list-turma";
+	    }
 	 
  
 	
