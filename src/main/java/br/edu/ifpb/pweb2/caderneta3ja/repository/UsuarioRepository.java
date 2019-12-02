@@ -20,8 +20,11 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Integer>{
 	
 	Usuario findByEmail(String email);
 	
-/*	@Query("SELECT u FROM Usuario u JOIN u.disciplinas d WHERE d.id = :id AND u.perfil = 'ALUNO'")
-	List<Usuario> findTurmaDisciplinaUserAluno(@Param("id")int id);*/
+	@Query(value = "select DISTINCT a.date, a.assunto, t.codigo from usuario u LEFT JOIN turma_usuario tu ON u.id=tu.usuario_id LEFT JOIN turma t ON t.id=tu.turma_id LEFT JOIN turma_disciplina td ON t.id=td.turma_id LEFT JOIN disciplina d ON d.id = td.disciplina_id LEFT JOIN aula a ON d.id=a.disciplina_id where u.id = :uid and t.id = :tid and d.id = :did", nativeQuery = true)
+	List<Object> findAulaByUsuarioTurmaDisciplina(@Param("uid")int uid, @Param("did")int did,@Param("tid")int tid);
+	
+//	@Query(value = "select DISTINCT a.date, a.assunto from usuario u LEFT JOIN turma_usuario tu ON u.id=tu.usuario_id LEFT JOIN turma t ON t.id=tu.turma_id LEFT JOIN disciplina d ON u.id = td_disciplina_id LEFT JOIN aula a ON d.id=a.disciplina_id where u.id = :uid and t.id = :tid and d.id = :did", nativeQuery = true)
+//	List<Object> findAulaByUsuarioTurmaDisciplina(@Param("uid")int uid, @Param("did")int did,@Param("tid")int tid);
 	
 	@Query(value = "select DISTINCT u.id, u.nome, u.matricula from usuario u LEFT JOIN turma_usuario tu ON u.id=tu.usuario_id LEFT JOIN turma t ON t.id=tu.turma_id LEFT JOIN disciplina d ON d.id = :did where t.id = :tid and u.tp_perfil='ALUNO'", nativeQuery = true)
 	List<Object> findUsuarioAlunoByTurmaDisciplina(@Param("tid")int tid, @Param("did")int did);
