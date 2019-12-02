@@ -1,5 +1,7 @@
 package br.edu.ifpb.pweb2.caderneta3ja.model;
 
+
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,7 +24,6 @@ public class Nota {
 	private Usuario usuario;
 	
 	@ManyToOne
-	@JoinColumn(name = "disciplina_id")
 	private Disciplina disciplina;
 	
 	
@@ -31,8 +32,6 @@ public class Nota {
 		
 	}
 	
-
-
 	public Nota(int id, int nota) {
 		
 		this.id = id;
