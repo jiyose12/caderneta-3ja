@@ -100,6 +100,7 @@ public class Disciplina  {
 	public void addAula(Aula a) {
 		this.aula.add(a);
 	}
+	
 
 	public List<Aula> getAula() {
 		return aula;

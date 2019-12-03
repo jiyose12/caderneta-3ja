@@ -54,8 +54,19 @@
   
   </div>
   <!-- Registro de Frequencia -->
+<!--     	<form action="#" th:action="@{/cadastrar-frequencia/}" th:object="${frequencia}" method="post">
+  	      <input type="datetime-local" name="date" id="date" th:field="*{date}" class="form-control" required  onchange="this.value.split('T')[0];">
+				<select id="presenca" name="presenca">
+					<option th:each="i : ${frequenciaOptions}"
+					th:text="${i.key}"
+					th:value="${i.value}"
+					th:selected="(${i.value}==*{frequencia})">
+						
+					</option>
+				</select>
+				<button type="submit" class="btn btn-primary">Cadastrar</button>
+	</form> -->
   <div role="tabpanel" class="tab-pane fade" id="freq">
-  	<form th:action="@{/foo}" method="">
   	<table class="table table-striped table-responsive-md">
   		<thead>
 			<tr>
@@ -69,29 +80,57 @@
 							
   	<tbody>
   	<tr th:each="aluno,d : ${aluno}">
+  	<form action="#" th:action="@{/professor/cadastrar-frequencia/{uid}(uid=${aluno[0]})}" th:object="${frequencia}" method="post">
   		<td th:text="${d.index}"></td>
 	      <td th:text="${aluno[1]}"></td>
-	      <td><input type="datetime-local" name="date" id="date" th:value="${frequencia.date}" class="form-control" required></td>
-  <!--     <input type="text" th:value="${bar.status}" name="status"/> -->
-  			<td>True/False</td>
+	      <td> <input type="datetime-local" name="date" id="date" th:field="*{date}" class="form-control" required  onchange="this.value.split('T')[0];"></td>
+  
+  			<td>
+                    <select th:field="*{presenca}">
+                         <option value=""> -- </option>
+                         <option th:each="entry : ${frequenciaOptions.entrySet()}"
+                                 th:value="${entry.value}"
+                                 th:utext="${entry.key}">
+                         </option>
+                  </select>
+			</td>
       <td> <button type="submit" class="btn btn-primary">Cadastrar</button></td>
      
+	</form>
      </tr>
      </tbody>
      </table>
-	</form>
   </div>
   <!-- Registro de Aula -->
   <div role="tabpanel" class="tab-pane fade" id="aula">
 	  <div class="row" style = "margin-top:60px;">
 	  
-	   <div class="col-sm d-flex justify-content-around mb-4">
+   
+	   	<div class="col-sm d-flex justify-content-around mb-4">
   
-   <h5 class="card-title text-center">Registros de aulas ficarão aqui</h5>
-  
-	<a th:href="@{/professor/formulario-aula/__${disciplina.id}__}" class="btn btn-primary">Cadastrar nova aula</a>    
+   			<h5 class="card-title text-center">Registros de Aulas</h5>
+			<a th:href="@{/professor/formulario-aula/__${disciplina.id}__}" class="btn btn-primary">Cadastrar nova aula</a>    
 
-</div>
+		</div>
+		
+   <table class="table table-striped table-responsive-md">
+							<thead>
+								<tr>
+									<th></th>
+									<th>Data</th>
+									<th>Assunto</th>
+								</tr>
+							</thead>
+							<tbody>
+							<tr th:each="_aula,d : ${aula}">
+							<td th:text="${d.index}"></td>
+	 		 				<td th:text="${_aula[0]}"></td>	
+	 		 				<td th:text="${_aula[1]}"></td> 
+	 		 				<td th:text="${_aula[2]}"></td> 
+			 
+								</tr>
+							</tbody>
+						</table>
 
 	  </div>
   </div>
@@ -105,3 +144,4 @@
   
 </body>
 </html>
+s

@@ -1,6 +1,8 @@
 package br.edu.ifpb.pweb2.caderneta3ja.controller;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
@@ -25,6 +27,7 @@ import br.edu.ifpb.pweb2.caderneta3ja.model.Turma;
 import br.edu.ifpb.pweb2.caderneta3ja.model.Usuario;
 import br.edu.ifpb.pweb2.caderneta3ja.repository.AulaRepository;
 import br.edu.ifpb.pweb2.caderneta3ja.repository.DisciplinaRepository;
+import br.edu.ifpb.pweb2.caderneta3ja.repository.FrequenciaRepository;
 import br.edu.ifpb.pweb2.caderneta3ja.repository.TurmaRepository;
 import br.edu.ifpb.pweb2.caderneta3ja.repository.UsuarioRepository;
 
@@ -42,6 +45,9 @@ public class ProfessorController {
 	
 	@Autowired
 	AulaRepository aulaRepository;
+	
+	@Autowired
+	FrequenciaRepository frequenciaRepository;
 
 	 @GetMapping("/{id}")
 	public ModelAndView listarTurmasProfessor(@PathVariable("id") Integer id, Model model) {
@@ -54,14 +60,29 @@ public class ProfessorController {
 	 @GetMapping("detalhes-turma/{tid}/{did}/{uid}")
 	    public String detalhesTurma(@PathVariable("tid") Integer tid,@PathVariable("did") Integer did, @PathVariable("uid") Integer uid, Model model) {
 	     
-//		 model.addAttribute("aula", aulaRepository.findById(tid).get());
-		 model.addAttribute("turma", turmaRepository.findById(tid).get());
+		 	model.addAttribute("aula", usuarioRepository.findAulaByUsuarioTurmaDisciplina(uid,did,tid));
+		 	model.addAttribute("turma", turmaRepository.findById(tid).get());
 		 	model.addAttribute("frequencia", new Frequencia());
+		 	model.addAttribute("frequenciaOptions", this.getPresencaOption());
 		 	model.addAttribute("disciplina", disciplinaRepository.findById(did).get());
 	        model.addAttribute("aluno", usuarioRepository.findUsuarioAlunoByTurmaDisciplina(tid, did));
 	        
 	        return "professor/turma-professor";
 	 }
+	 
+	 @PostMapping("cadastrar-frequencia/{uid}")
+	    public String cadastrarFrequencia(@PathVariable("uid") Integer uid, Frequencia frequencia, HttpServletRequest request) {
+
+		 String ultimaPagina = request.getHeader("Referer");	 
+		 
+		 Optional<Usuario> d = usuarioRepository.findById(uid);
+		 
+		 frequencia.setUsuario(d.get());
+		 
+		 frequenciaRepository.save(frequencia);
+		 
+	        return "redirect:"+ ultimaPagina;
+	    }
 	 
 	 @GetMapping("formulario-aula/{did}")
 	    public ModelAndView aulaForm(@PathVariable("did") Integer id, Model model) {
@@ -86,6 +107,14 @@ public class ProfessorController {
 		 
 	        return "redirect:"+ ultimaPagina;
 	    }
+	 
+	 private Map<String, Integer> getPresencaOption(){
+		 LinkedHashMap<String, Integer> options = new LinkedHashMap<String, Integer>();
+		 options.put("Presenca", 1);
+		 options.put("Falta", 0);
+		 
+		 return options;
+	 }
 	
 	/*
 	 * @GetMapping("/list") public String ListaProfessor(Model model) {

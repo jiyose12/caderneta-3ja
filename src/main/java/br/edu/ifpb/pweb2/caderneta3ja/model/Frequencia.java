@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 public class Frequencia {
 
@@ -19,6 +21,7 @@ public class Frequencia {
 	private int id;
 	
 	private Boolean presenca; 
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date date;
 	
 	@ManyToOne
