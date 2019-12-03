@@ -9,84 +9,95 @@
 <body>
 <section layout:fragment="content">
 <div class="container">
-
-    <h1>Todas as Turmas</h1>
- <div class="row">
- <div class="col-sm d-flex justify-content-around mb-4">
-   <button type="button" class="btn btn-primary btn-lg">Adicionar Turma</button>
-   <button type="button" class="btn btn-primary btn-lg">Adicionar Professor</button>
-   <button type="button" class="btn btn-primary btn-lg">Adicionar Aluno</button>
+<div style="
+    margin-left: 500px;
+    margin-bottom: -46px;
+" >
+	
+	<a th:href="@{/coordenador/cadastrar-professor-disciplina}" class="btn btn-primary">Cadastrar Professor Disciplina</a>    
+	<button type="button" class="btn btn-primary">Visualizar Disciplina</button> 
+	<button type="button" class="btn btn-primary">Matricular Aluno</button> 
 </div>
-<!-- datatable bootstrap4 -->
-   <table id="example" class="table table-striped table-bordered" style="width:100%">
-        <thead>
-            <tr>
-                <th>Código</th>
-                <th>Disciplina</th>
-                <th>Qtd Alunos Matriculados</th>
-                <th>Professor</th>
-				<th>Acesso</th>                
 
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Tiger Nixon</td>
-                <td>System Architect</td>
-                <td>32</td>
-                <td>João</td>
-                <td>Botão</td>
- 
-            </tr>
-            <tr>
-                <td>Garrett Winters</td>
-                <td>Accountant</td>
-                <td>32</td>
-                <td>Pedro</td>
-                <td>Botão</td>
-            </tr>
-            <tr>
-                <td>Ashton Cox</td>
-                <td>Junior Technical Author</td>
-                <td>32</td>
-                <td>Maria</td>
-                <td>Botão</td>
-            </tr>
-            <tr>
-                <td>Cedric Kelly</td>
-                <td>Senior Javascript Developer</td>
-                <td>32</td>
-                <td>Botão</td>
-            </tr>
-
-            <tr>
-                <td>Herrod Chandler</td>
-                <td>Sales Assistant</td>
-                <td>32</td>
-                <td>Alba</td>
-                <td>Botão</td>
-            </tr>
-            <tr>
-                <td>Rhona Davidson</td>
-                <td>Integration Specialist</td>
-                <td>32</td>
-                <td>Victor</td>
-                <td>Botão</td>                
-            </tr>
-            <tr>
-                <td>Jenette Caldwell</td>
-                <td>Development Lead</td>
-                <td>32</td>
-                <td>Simone</td>
-                <td>Botão</td>                
-            </tr>
-        </tbody>
+    <h1>Coordenador</h1>
     
-    </table>
-<!-- fim datable -->
-
+ <div class="row" style = "margin-top:60px;">
+ <div class="col-sm d-flex justify-content-around mb-4">
+ 
+   <div class="card" style="width: 18rem;border-radius: 30px;border-color: #007bff;border-width: 5px;">
+  
+  <img th:src="@{/images/prof.png}" class="card-img-top" alt="..." style="
+    width: 185px;
+    margin-left: 43px;">
+   <h5 class="card-title text-center">Professor</h5>
+  <div class="card-body">
+  
+  	
+	<a th:href="@{/coordenador/cadastra-professor}" class="btn btn-primary" style=" border-radius: 15px">Cadastrar</a>    
+	<a th:href="@{/coordenador/list-professor}" class="btn btn-success" style="margin-left: 39px;width: 93px;border-radius: 15px;">Lista</a>
+	
+  </div>
 </div>
+
+  <div class="card" style="width: 18rem;border-radius: 30px;border-color: #007bff;border-width: 5px;">
+  
+  <img th:src="@{/images/stud.png}"  class="card-img-top" alt="..." style="width: 185px;margin-left: 43px;">
+  
+   <h5 class="card-title text-center">Aluno</h5>
+  <div class="card-body">
+  	<a th:href="@{/coordenador/cadastra-aluno}" class="btn btn-primary"style=" border-radius: 15px">Cadastrar</a>    
+	<a th:href="@{/coordenador/list-aluno}" class="btn btn-success"style="margin-left: 39px;width: 93px;border-radius: 15px;">Lista</a>
+  
+  </div>
+</div>
+  
+</div>
+</div>
+
+ 
+
+ 
+
+
+
+<div class="row">
+ <div class="col-sm d-flex justify-content-around mb-4">
+     <div class="card" style="width: 18rem;border-radius: 30px;border-color: #007bff;border-width: 5px;">
+  
+  <img th:src="@{/images/dicip.png}"  class="card-img-top" alt="..." style="
+    width: 185px;
+    margin-left: 43px;">
+   <h5 class="card-title text-center">Disciplina</h5>
+  <div class="card-body">
+  	<a th:href="@{/coordenador/cadastra-disciplina}" class="btn btn-primary"style=" border-radius: 15px">Cadastrar</a>   
+	<a th:href="@{/coordenador/list-disciplina}" class="btn btn-success"style="margin-left: 39px;width: 93px;border-radius: 15px;">Lista</a> 
+  
+    
+  </div>
+</div>
+
+  <div class="card" style="width: 18rem;border-radius: 30px;border-color: #007bff;border-width: 5px;">
+  
+  <img th:src="@{/images/tt.png}"  class="card-img-top" alt="..." style="
+    width: 185px;
+    margin-left: 43px;">
+   <h5 class="card-title text-center">Turma</h5>
+  <div class="card-body">
+	<a th:href="@{/coordenador/cadastra-turma}" class="btn btn-primary"style=" border-radius: 15px">Cadastrar</a>   
+	<a th:href="@{/coordenador/list-turma}" class="btn btn-success"style="margin-left: 39px;width: 93px;border-radius: 15px;">Lista</a> 
+  </div>
+</div>
+   
+</div>
+</div>
+
+
+
 </section>
+
+
+
+
 
 </body>
 </html>

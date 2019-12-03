@@ -6,11 +6,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@Table(name="tb_Aula")
+@Table(name="aula")
 public class Aula {
 	// Atributos
 	@Id
@@ -18,28 +21,52 @@ public class Aula {
 	private int id;
 	
 	private String assunto;
-	private Date data;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private Date date;
+	
+	@ManyToOne
+	private Disciplina disciplina;
 	
 	// Construtores
-	public Aula(String assunto, Date data) {
+	public Aula(String assunto, Date date) {
 		this.assunto = assunto;
-		this.data = data;
+		this.date = date;
 	}
 	public Aula() {}
 	
 	// Métodos getters e setters
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	public String getAssunto() {
 		return assunto;
 	}
+
 	public void setAssunto(String assunto) {
 		this.assunto = assunto;
 	}
-	public Date getData() {
-		return data;
+
+	public Date getDate() {
+		return date;
 	}
-	public void setData(Date data) {
-		this.data = data;
+
+	public void setDate(Date date) {
+		this.date = date;
 	}
+
+	public Disciplina getDisciplina() {
+		return disciplina;
+	}
+
+	public void setDisciplina(Disciplina disciplina) {
+		this.disciplina = disciplina;
+	}
+	
 	
 	
 }

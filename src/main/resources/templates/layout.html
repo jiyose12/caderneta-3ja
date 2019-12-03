@@ -18,7 +18,10 @@
 
 <body>
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-    <a class="navbar-brand" href="#">Dashboard</a>
+    <a th:href="${session.ultimaPagina}" class="navbar-brand"><img th:src="@{/images/left-arrow.png}"  class="card-img-top" alt="..." style="
+    width: 50px;
+    margin-left: 10px;">
+  </a>
     <button class="navbar-toggler d-lg-none" type="button"
             data-toggle="collapse" data-target="#navbarsExampleDefault"
             aria-controls="navbarsExampleDefault" aria-expanded="false"
@@ -28,17 +31,18 @@
 
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item active"><a class="nav-link" href="#">Home
+<!--             <li class="nav-item active"><a class="nav-link" href="#">Home
                 <span class="sr-only">(current)</span>
-            </a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Settings</a>
+            </a></li> -->
+            <li class="nav-item"><a class="nav-link" href="#">Configurações</a>
             </li>
-            <li class="nav-item"><a class="nav-link" href="#">Profile</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Help</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Perfil</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Ajuda</a></li>
         </ul>
 
-        <form th:action="@{/logout}" method="post">
-            <button type="submit" class="btn btn-primary">Sign Out</input>
+        <form th:action="@{/logout}" method="post" class="d-flex justify-content-around">
+        	<div class="mr-5" style="color: white;" th:text="${session.usuario.nome}"></div>
+           <div> <button type="submit" class="btn btn-primary">Deslogar</input></div>
         </form>
     </div>
 </nav>

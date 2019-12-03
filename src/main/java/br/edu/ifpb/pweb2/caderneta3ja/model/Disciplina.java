@@ -1,14 +1,23 @@
 package br.edu.ifpb.pweb2.caderneta3ja.model;
 
+import java.util.List;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="tb_Disciplina")
-public class Disciplina {
+@Table(name="disciplina")
+public class Disciplina  {
 	//Atributos
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -16,13 +25,32 @@ public class Disciplina {
 	
 	private String nome;
 	private String codigo;
+	private String curso;	
+	 
+	 @ManyToMany
+	 @JoinTable(
+	   name = "turma_disciplina", 
+	   joinColumns = @JoinColumn(name = "disciplina_id"),
+	   inverseJoinColumns = @JoinColumn(name = "turma_id"))
+	 Set<Turma> turmadisciplina;
+	 
+	@OneToMany(mappedBy = "disciplina", cascade = CascadeType.ALL)
+	 private List<Aula> aula;
+
+	 	@OneToMany(mappedBy = "disciplina", cascade = CascadeType.ALL)
+	 private List<Nota> notas;
+ 
+	@ManyToOne
+	@JoinColumn(name = "usuario_id")
+	private Usuario usuario;
 	
 	//Construtores
 	public Disciplina() {}
 	
-	public Disciplina(String nome, String codigo) {
+	public Disciplina(String nome, String codigo, String curso) {
 		this.nome = nome;
 		this.codigo = codigo;
+		this.curso = curso;
 	}
 	//Métodos
 	public int getId() {
@@ -48,6 +76,53 @@ public class Disciplina {
 	public void setCodigo(String codigo) {
 		this.codigo = codigo;
 	}
+
+	public String getCurso() {
+		return curso;
+	}
+
+	public void setCurso(String curso) {
+		this.curso = curso;
+	}
+
+	public Set<Turma> getTurmadisciplina() {
+		return turmadisciplina;
+	}
+
+	public void setTurmadisciplina(Set<Turma> turmadisciplina) {
+		this.turmadisciplina = turmadisciplina;
+	}
+
+	public void addTurmadisciplina(Turma turmadisciplina) {
+		this.turmadisciplina.add(turmadisciplina);
+	}
+	
+	public void addAula(Aula a) {
+		this.aula.add(a);
+	}
+	
+
+	public List<Aula> getAula() {
+		return aula;
+	}
+
+	public void setAula(List<Aula> aula) {
+		this.aula = aula;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+	
+	
+
+	
+	
 	
 	
 	
